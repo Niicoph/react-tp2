@@ -1,11 +1,13 @@
 import {Routes, Route} from "react-router-dom";
-import App from "../App";
+import { routes } from "./routes";
+import Home from "../pages/Home";
+
 
 export default function RoutesApp() {
   return (
     <Routes>
-        <Route path="/" element={<App/>} />
-        <Route path="/about" element={<h1>About</h1>} />
+        <Route path={routes.home} element={<Home/>} />
+        <Route path={routes.notFound} element={<div>404 Not Found</div>} />
     </Routes>
   )
 }
