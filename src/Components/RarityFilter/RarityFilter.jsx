@@ -1,7 +1,8 @@
 import RarityButton from "./RarityButton";
 
 const rarities = [
-  { name: "Mil-spec", color: "#4b69ff" },
+  { name: "All" , color: "#000000" },
+  { name: "Mil-Spec Grade", color: "#4b69ff" },
   { name: "Covert", color: "#eb4b4b" },
   { name: "Restricted", color: "#8847ff" },
   { name: "Classified", color: "#d32ce6" },

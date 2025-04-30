@@ -3,7 +3,7 @@ import { useParams } from "react-router";
 
 export default function SkinDetails() {
   const [skin, setSkin] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const { id } = useParams();
 
@@ -39,7 +39,5 @@ export default function SkinDetails() {
       </div>
     );
   }
-
-  console.log(skin);
-  return <div>SkinDetails </div>;
+  return <main className="fade-in">SkinDetails </main>;
 }

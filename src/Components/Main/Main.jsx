@@ -1,18 +1,21 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import Card from "../UI/Card";
 import RarityFilter from "../RarityFilter/RarityFilter";
+import LoadingGif from "../UI/LoadingGif";
 
-export default function Main() {
+export default function Main({ inputSearch }) {
   const [allSkins, setAllSkins] = useState([]);
   const [filteredSkins, setFilteredSkins] = useState([]);
   const [hoveredId, setHoveredId] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchSkins = async () => {
       try {
         setLoading(true);
+        // simulando delay
+        await new Promise((resolve) => setTimeout(resolve, 2000));
         const response = await fetch(
           "https://680ff3de27f2fdac240fe0f4.mockapi.io/v1/cs2/skins"
         );
@@ -28,8 +31,20 @@ export default function Main() {
     fetchSkins();
   }, []);
 
+  // filtramos por nombre segun el input search value
+  useEffect(() => {
+    if (!inputSearch) {
+      setFilteredSkins(allSkins);
+    } else {
+      const filtered = allSkins.filter((skin) =>
+        skin.name.toLowerCase().includes(inputSearch.toLowerCase())
+      );
+      setFilteredSkins(filtered);
+    }
+  }, [inputSearch, allSkins]);
+
   const filterByRarity = (rarity) => {
-    if (!rarity) {
+    if (!rarity || rarity === "All") {
       setFilteredSkins(allSkins);
     } else {
       const filtered = allSkins.filter((skin) => skin.rarity.name === rarity);
@@ -38,11 +53,7 @@ export default function Main() {
   };
 
   if (loading) {
-    return (
-      <div className="flex justify-center items-center w-full h-full">
-        <h1 className="text-3xl font-bold">Loading...</h1>
-      </div>
-    );
+    return <LoadingGif />;
   }
 
   if (error) {
@@ -54,7 +65,7 @@ export default function Main() {
   }
 
   return (
-    <main className="flex flex-col gap-5 flex-1 w-full pb-10 pt-5">
+    <main className="flex flex-col gap-5 flex-1 w-full pb-10 pt-5 fade-in">
       <RarityFilter filterByRarity={filterByRarity} />
 
       {filteredSkins.length === 0 ? (

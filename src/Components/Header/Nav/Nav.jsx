@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Input from "../../UI/Input";
 
-export default function Nav({ weaponCategories }) {
+export default function Nav({ weaponCategories, setInputSearch }) {
   const [weapons, setWeapons] = useState([]);
   const [openSelect, setOpenSelect] = useState(null);
   const [selectedWeapon, setSelectedWeapon] = useState({});
@@ -87,7 +87,7 @@ export default function Nav({ weaponCategories }) {
           );
         })}
         <li>
-          <Input />
+          <Input onChange={(e) => setInputSearch(e.target.value)} />
         </li>
       </ul>
     </nav>
