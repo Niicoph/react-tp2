@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Card from "../UI/Card";
 import RarityFilter from "../RarityFilter/RarityFilter";
-import LoadingGif from "../UI/LoadingGif";
+import LoadingLogo from "../UI/LoadingLogo/LoadingLogo";
 
 export default function Main({ inputSearch, selectedWeapon }) {
   const [allSkins, setAllSkins] = useState([]);
@@ -64,7 +64,7 @@ export default function Main({ inputSearch, selectedWeapon }) {
   };
 
   if (loading) {
-    return <LoadingGif />;
+    return <LoadingLogo />;
   }
 
   if (error) {
