@@ -1,5 +1,6 @@
 @import "tailwindcss";
 
 @theme {
-    --color-orange-primary: #fb742d;
+  --color-orange-primary: #fb742d;
+  --shadow-primary: 0px 1px 4px rgba(0, 0, 0, 0.16);
 }

@@ -1,20 +1,21 @@
 import { useEffect, useState } from "react";
-import Card from "../UI/Card";
+import { useParams } from "react-router";
 
-export default function Main() {
-  const [skins, setSkins] = useState([]);
+export default function SkinDetails() {
+  const [skin, setSkin] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const { id } = useParams();
 
   useEffect(() => {
     const fetchSkins = async () => {
       try {
         setLoading(true);
         const response = await fetch(
-          "https://680ff3de27f2fdac240fe0f4.mockapi.io/v1/cs2/skins"
+          `https://680ff3de27f2fdac240fe0f4.mockapi.io/v1/cs2/skins/${id}`
         );
         const data = await response.json();
-        setSkins(data);
+        setSkin(data);
       } catch (error) {
         setError(error);
       } finally {
@@ -22,7 +23,7 @@ export default function Main() {
       }
     };
     fetchSkins();
-  }, []);
+  }, [id]);
 
   if (loading) {
     return (
@@ -39,11 +40,6 @@ export default function Main() {
     );
   }
 
-  return (
-    <main className="grid grid-cols-4 h-full w-full gap-10 py-10">
-      {skins.map((skin) => {
-        return <Card skin={skin} />;
-      })}
-    </main>
-  );
+  console.log(skin);
+  return <div>SkinDetails </div>;
 }

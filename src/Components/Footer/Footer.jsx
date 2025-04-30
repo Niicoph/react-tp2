@@ -4,7 +4,7 @@ import SocialIcon from "../UI/SocialIcons";
 
 export default function Footer() {
   return (
-    <footer className="w-full h-16 flex justify-between items-center px-4 sticky bottom-0 bg-[#e3e8f0] z-10">
+    <footer className="w-full h-16 flex justify-between items-center px-4 bottom-0 bg-[#e3e8f0] z-10">
       <ul className="flex flex-row items-center gap-x-4">
         <li className="text-sm text-gray-700">Redes Sociales</li>
         <SocialIcon
