@@ -17,7 +17,7 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="w-full h-16 flex  items-center  border-b border-orange-primary">
+    <header className="w-full h-16 flex  items-center  border-b border-orange-primary sticky top-0 bg-[#e3e8f0] z-10">
       <h1>Logo</h1>
       <Nav weaponCategories={weaponCategories} />
       <div className="ml-auto flex items-center">
