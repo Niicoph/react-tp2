@@ -4,3 +4,27 @@
   --color-orange-primary: #fb742d;
   --shadow-primary: 0px 1px 4px rgba(0, 0, 0, 0.16);
 }
+
+.scrollbar-hidden {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+@keyframes dropdown {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-dropdown {
+  animation: dropdown 150ms ease-out forwards;
+}

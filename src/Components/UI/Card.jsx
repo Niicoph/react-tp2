@@ -1,8 +1,16 @@
 import { Link } from "react-router";
 
-export default function Card({ skin }) {
+export default function Card({ skin, hoveredId, onHover, onLeave }) {
+  const isOtherHovered = hoveredId && hoveredId !== skin.id;
   return (
-    <Link className="flex flex-col justify-center items-center w-full h-80 shadow-primary rounded-xl bg-white border border-slate-200 hover:border-2 hover:border-orange-primary" to={`/skins/${skin.id}`}>
+    <Link
+      onMouseEnter={onHover}
+      onMouseLeave={onLeave}
+      className={`transition duration-200 ease-in-out ${
+        isOtherHovered ? "blur-[1px] opacity-60" : ""
+      } flex flex-col justify-center items-center w-full h-80 shadow-primary rounded-xl bg-white border border-slate-200 hover:border-2 hover:border-orange-primary`}
+      to={`/skins/${skin.id}`}
+    >
       <div className="w-5/6 flex gap-2">
         {skin.stattrak && (
           <>
@@ -17,7 +25,7 @@ export default function Card({ skin }) {
       <img
         src={skin.image}
         alt={skin.name}
-        className=" object-contain w-3/4 h-3/4 "
+        className=" object-contain w-3/4 h-3/4 flex justify-center items-center"
       />
       <h3 className="text-sm font-bold">{skin.name}</h3>
       <p className="text-xs text-gray-500">{skin.rarity.name}</p>

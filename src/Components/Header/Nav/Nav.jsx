@@ -52,13 +52,21 @@ export default function Nav({ weaponCategories }) {
                     className="w-4 h-4"
                   />
                 )}
-                <span className="flex justify-center items-center gap-2 text-sm">{selected?.name || weaponCat.name}
-                    <img src="https://img.icons8.com/material-outlined/24/expand-arrow--v1.png" alt="dropdown" className="w-4 h-4" />
+                <span className="flex justify-center items-center gap-2 text-sm">
+                  {selected?.name || weaponCat.name}
+                  <img
+                    src="https://img.icons8.com/material-outlined/24/expand-arrow--v1.png"
+                    alt="dropdown"
+                    className="w-4 h-4"
+                  />
                 </span>
               </button>
 
               {openSelect === weaponCat.id && (
-                <div className="absolute mt-[18px] border-t border-t-orange-primary bg-slate-100 border-2 border-slate-300 rounded shadow-xl z-10 w-48 max-h-80 overflow-auto">
+                <div
+                  className="absolute mt-[18px] border-t border-t-orange-primary bg-slate-100 border-2 border-slate-100 rounded shadow-xl z-10 w-48 max-h-80 overflow-auto scrollbar-hidden
+    transition-all duration-200 ease-out origin-top scale-95 opacity-0 animate-dropdown"
+                >
                   {filterWeaponsByCategory(weaponCat.name).map((weapon) => (
                     <div
                       key={weapon.id}

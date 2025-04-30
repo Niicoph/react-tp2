@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import Card from "../UI/Card";
+import RarityFilter from "../RarityFilter/RarityFilter";
 
 export default function Main() {
-  const [skins, setSkins] = useState([]);
+  const [allSkins, setAllSkins] = useState([]);
+  const [filteredSkins, setFilteredSkins] = useState([]);
+  const [hoveredId, setHoveredId] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -14,7 +17,8 @@ export default function Main() {
           "https://680ff3de27f2fdac240fe0f4.mockapi.io/v1/cs2/skins"
         );
         const data = await response.json();
-        setSkins(data);
+        setAllSkins(data);
+        setFilteredSkins(data);
       } catch (error) {
         setError(error);
       } finally {
@@ -24,6 +28,15 @@ export default function Main() {
     fetchSkins();
   }, []);
 
+  const filterByRarity = (rarity) => {
+    if (!rarity) {
+      setFilteredSkins(allSkins);
+    } else {
+      const filtered = allSkins.filter((skin) => skin.rarity.name === rarity);
+      setFilteredSkins(filtered);
+    }
+  };
+
   if (loading) {
     return (
       <div className="flex justify-center items-center w-full h-full">
@@ -31,6 +44,7 @@ export default function Main() {
       </div>
     );
   }
+
   if (error) {
     return (
       <div className="flex justify-center items-center w-full h-full">
@@ -40,10 +54,26 @@ export default function Main() {
   }
 
   return (
-    <main className="grid grid-cols-4 h-full w-full gap-10 py-10">
-      {skins.map((skin) => {
-        return <Card skin={skin} />;
-      })}
+    <main className="flex flex-col gap-5 flex-1 w-full pb-10 pt-5">
+      <RarityFilter filterByRarity={filterByRarity} />
+
+      {filteredSkins.length === 0 ? (
+        <div className="flex justify-start items-center w-full">
+          <h1 className="text-sm font-medium">No skins found</h1>
+        </div>
+      ) : (
+        <div className="grid grid-cols-4 gap-10">
+          {filteredSkins.map((skin) => (
+            <Card
+              key={skin.id}
+              skin={skin}
+              hoveredId={hoveredId}
+              onHover={() => setHoveredId(skin.id)}
+              onLeave={() => setHoveredId(null)}
+            />
+          ))}
+        </div>
+      )}
     </main>
   );
 }
