@@ -3,7 +3,7 @@ import Card from "../UI/Card";
 import RarityFilter from "../RarityFilter/RarityFilter";
 import LoadingGif from "../UI/LoadingGif";
 
-export default function Main({ inputSearch }) {
+export default function Main({ inputSearch, selectedWeapon }) {
   const [allSkins, setAllSkins] = useState([]);
   const [filteredSkins, setFilteredSkins] = useState([]);
   const [hoveredId, setHoveredId] = useState(null);
@@ -31,17 +31,28 @@ export default function Main({ inputSearch }) {
     fetchSkins();
   }, []);
 
-  // filtramos por nombre segun el input search value
   useEffect(() => {
-    if (!inputSearch) {
-      setFilteredSkins(allSkins);
-    } else {
-      const filtered = allSkins.filter((skin) =>
+    let filtered = allSkins;
+
+    // Filtro por input
+    if (inputSearch) {
+      filtered = filtered.filter((skin) =>
         skin.name.toLowerCase().includes(inputSearch.toLowerCase())
       );
-      setFilteredSkins(filtered);
     }
-  }, [inputSearch, allSkins]);
+
+    // Filtro por armas seleccionadas
+    const selectedWeaponNames = Object.values(selectedWeapon).map(
+      (w) => w.name
+    );
+    if (selectedWeaponNames.length > 0) {
+      filtered = filtered.filter((skin) =>
+        selectedWeaponNames.includes(skin.weapon.name)
+      );
+    }
+
+    setFilteredSkins(filtered);
+  }, [inputSearch, selectedWeapon, allSkins]);
 
   const filterByRarity = (rarity) => {
     if (!rarity || rarity === "All") {

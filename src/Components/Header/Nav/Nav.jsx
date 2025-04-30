@@ -1,10 +1,17 @@
 import { useEffect, useState } from "react";
 import Input from "../../UI/Input";
 
-export default function Nav({ weaponCategories, setInputSearch }) {
+export default function Nav({
+  weaponCategories,
+  setInputSearch,
+  selectedWeapon,
+  setSelectedWeapon,
+}) {
   const [weapons, setWeapons] = useState([]);
   const [openSelect, setOpenSelect] = useState(null);
-  const [selectedWeapon, setSelectedWeapon] = useState({});
+
+  // estructura
+  // console.log("selectedWeapon", selectedWeapon[1]?.name);
 
   useEffect(() => {
     const fetchWeapons = async () => {
@@ -31,6 +38,10 @@ export default function Nav({ weaponCategories, setInputSearch }) {
   const selectWeapon = (catId, weapon) => {
     setSelectedWeapon((prev) => ({ ...prev, [catId]: weapon }));
     setOpenSelect(null);
+  };
+  // reset selections
+  const resetSelections = () => {
+    setSelectedWeapon({});
   };
 
   return (
@@ -86,6 +97,14 @@ export default function Nav({ weaponCategories, setInputSearch }) {
             </li>
           );
         })}
+        <li>
+          <button
+            onClick={resetSelections}
+            className="text-sm px-3 py-1 bg-red-500 hover:bg-red-600 text-white rounded"
+          >
+            Clear
+          </button>
+        </li>
         <li>
           <Input onChange={(e) => setInputSearch(e.target.value)} />
         </li>
