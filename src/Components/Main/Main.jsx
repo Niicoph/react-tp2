@@ -9,12 +9,25 @@ export default function Main({ inputSearch, selectedWeapon }) {
   const [hoveredId, setHoveredId] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [favorites, setFavorites] = useState(
+    JSON.parse(localStorage.getItem("favorites")) || []
+  );
+
+  const toggleFavorite = (skinId) => {
+    let updatedFavorites;
+    if (favorites.includes(skinId)) {
+      updatedFavorites = favorites.filter((id) => id !== skinId);
+    } else {
+      updatedFavorites = [...favorites, skinId];
+    }
+    setFavorites(updatedFavorites);
+    localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+  };
 
   useEffect(() => {
     const fetchSkins = async () => {
       try {
         setLoading(true);
-        // simulando delay
         await new Promise((resolve) => setTimeout(resolve, 2000));
         const response = await fetch(
           "https://680ff3de27f2fdac240fe0f4.mockapi.io/v1/cs2/skins"
@@ -34,14 +47,12 @@ export default function Main({ inputSearch, selectedWeapon }) {
   useEffect(() => {
     let filtered = allSkins;
 
-    // Filtro por input
     if (inputSearch) {
       filtered = filtered.filter((skin) =>
         skin.name.toLowerCase().includes(inputSearch.toLowerCase())
       );
     }
 
-    // Filtro por armas seleccionadas
     const selectedWeaponNames = Object.values(selectedWeapon).map(
       (w) => w.name
     );
@@ -89,9 +100,11 @@ export default function Main({ inputSearch, selectedWeapon }) {
             <Card
               key={skin.id}
               skin={skin}
+              liked={favorites.includes(skin.id)}
               hoveredId={hoveredId}
               onHover={() => setHoveredId(skin.id)}
               onLeave={() => setHoveredId(null)}
+              onToggleFavorite={() => toggleFavorite(skin.id)}
             />
           ))}
         </div>

@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router";
+import { useParams } from "react-router";
 import { routes } from "../routes/routes.js";
 import LoadingLogo from "../Components/UI/LoadingLogo/LoadingLogo.jsx";
 import Header from "../Components/Header/Header.jsx";
 import Footer from "../Components/Footer/Footer.jsx";
 import Card from "../Components/UI/Card.jsx";
+import { Link } from "react-router-dom";
 
 export default function SkinDetails() {
   const [skin, setSkin] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const { id } = useParams();
-  const navigate = useNavigate();
   const [description, setDescription] = useState([]);
   const [italic, setItalic] = useState([]);
   const [hoveredId, setHoveredId] = useState(null);
@@ -27,8 +27,6 @@ export default function SkinDetails() {
         );
         const data = await response.json();
         setSkin(data);
-        console.log(data);
-        console.log(data.image);
       } catch (error) {
         setError(error);
       } finally {
@@ -66,25 +64,21 @@ export default function SkinDetails() {
     );
   }
 
-  const onClickNavigateToHomeHandler = () => {
-    navigate(routes.home);
-  };
-
   // const [selectedWeapon, setSelectedWeapon] = useState({});
 
   if (skin) {
     return (
       <div className="flex justify-center items-center w-full">
         <main className="flex flex-col items-center w-4/6 min-h-screen">
-          <Header          
-          selectedWeapon={selectedWeapon}
-          setSelectedWeapon={setSelectedWeapon}
-        />
+          <Header
+            selectedWeapon={selectedWeapon}
+            setSelectedWeapon={setSelectedWeapon}
+          />
           <div className="flex flex-col flex-grow w-full pb-10 pt-5 fade-in">
             <div className="pb-10">
-              <button onClick={onClickNavigateToHomeHandler}>
+              <Link to={routes.home}>
                 <span>Home</span>
-              </button>
+              </Link>
               <span> / {skin.weapon}</span>
             </div>
             <div className="flex flex-row gap-10">

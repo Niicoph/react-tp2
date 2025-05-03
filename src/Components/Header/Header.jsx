@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import esIcon from "../../assets/Icons/es-ES.png";
+import Favorites from '../../assets/Icons/LikeBefore.png'
 import Nav from "./Nav/Nav";
-import Logo from '../../assets/logo.svg'
+import Logo from "../../assets/logo.svg";
+import { Link } from "react-router-dom";
 
-export default function Header({selectedWeapon, setSelectedWeapon}) {
+export default function Header({ selectedWeapon, setSelectedWeapon }) {
   const [weaponCategories, setWeaponCategories] = useState([]);
 
   useEffect(() => {
@@ -18,12 +20,25 @@ export default function Header({selectedWeapon, setSelectedWeapon}) {
   }, []);
 
   return (
-    <header className="w-full h-16 flex  items-center  border-b border-dotted border-slate-300 sticky top-0 z-10 bg-opacity-90 backdrop-blur-sm">
-      <img src={Logo} alt="logo !eco" className="w-10 h-10" />
-      <Nav weaponCategories={weaponCategories} selectedWeapon={selectedWeapon} setSelectedWeapon={setSelectedWeapon} />
+    <header className="w-full h-16 flex  items-center  border-b border-dotted border-slate-300 sticky top-0 z-10 bg-opacity-90 backdrop-blur-sm px-2">
+      <Link to={"/"}>
+        <img src={Logo} alt="logo !eco" className="w-10 h-10" />
+      </Link>
+      <Nav
+        weaponCategories={weaponCategories}
+        selectedWeapon={selectedWeapon}
+        setSelectedWeapon={setSelectedWeapon}
+      />
       <div className="ml-auto flex items-center">
         <span className="text-sm text-gray-500">ES</span>
         <img src={esIcon} alt="es-ES" className="w-5 h-5 ml-2" />
+        <Link to={"/favorites"}>
+          <img
+            src={Favorites}
+            alt="Favorites"
+            className="w-5 h-5 ml-4 cursor-pointer"
+          />
+        </Link>
       </div>
     </header>
   );
