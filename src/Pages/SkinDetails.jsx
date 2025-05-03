@@ -15,6 +15,8 @@ export default function SkinDetails() {
   const [description, setDescription] = useState([]);
   const [italic, setItalic] = useState([]);
   const [hoveredId, setHoveredId] = useState(null);
+  // Usado en el Header para el filtro de armas, la busqueda no lo usa
+  const [selectedWeapon, setSelectedWeapon] = useState({});
 
   useEffect(() => {
     const fetchSkins = async () => {
@@ -74,11 +76,10 @@ export default function SkinDetails() {
     return (
       <div className="flex justify-center items-center w-full">
         <main className="flex flex-col items-center w-4/6 min-h-screen">
-          {/* <Header
-          setInputSearch={setInputSearch}
+          <Header          
           selectedWeapon={selectedWeapon}
           setSelectedWeapon={setSelectedWeapon}
-        /> */}
+        />
           <div className="flex flex-col flex-grow w-full pb-10 pt-5 fade-in">
             <div className="pb-10">
               <button onClick={onClickNavigateToHomeHandler}>
