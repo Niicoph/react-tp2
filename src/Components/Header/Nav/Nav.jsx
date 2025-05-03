@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
-import Input from "../../UI/Input";
+import Searchbar from "../../UI/Searchbar";
 
 export default function Nav({
   weaponCategories,
-  setInputSearch,
   selectedWeapon,
   setSelectedWeapon,
 }) {
@@ -105,8 +104,8 @@ export default function Nav({
             Clear
           </button>
         </li>
-        <li>
-          <Input onChange={(e) => setInputSearch(e.target.value)} />
+        <li className="flex items-center w-3/4">
+          <Searchbar />
         </li>
       </ul>
     </nav>
