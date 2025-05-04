@@ -3,6 +3,7 @@ import { routes } from "./routes";
 import Home from "../Pages/Home";
 import SkinDetails from "../Pages/SkinDetails";
 import Favorites from "../Pages/Favorites";
+import NotFound from "../Pages/NotFound";
 
 export default function RoutesApp() {
   return (
@@ -10,7 +11,7 @@ export default function RoutesApp() {
       <Route path={routes.home} element={<Home />} />
       <Route path={routes.skinsId} element={<SkinDetails />} />
       <Route path={routes.favorites} element={<Favorites />} />
-      <Route path={routes.notFound} element={<div>404 Not Found</div>} />
+      <Route path={routes.notFound} element={<NotFound />} />
     </Routes>
   );
 }
