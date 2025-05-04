@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import esIcon from "../../assets/Icons/es-ES.png";
-import Favorites from '../../assets/Icons/LikeBefore.png'
+import Favorites from "../../assets/Icons/LikeBefore.png";
 import Nav from "./Nav/Nav";
 import Logo from "../../assets/logo.svg";
 import { Link } from "react-router-dom";
 
-export default function Header({ selectedWeapon, setSelectedWeapon }) {
+export default function Header() {
   const [weaponCategories, setWeaponCategories] = useState([]);
 
   useEffect(() => {
@@ -24,11 +24,7 @@ export default function Header({ selectedWeapon, setSelectedWeapon }) {
       <Link to={"/"}>
         <img src={Logo} alt="logo !eco" className="w-10 h-10" />
       </Link>
-      <Nav
-        weaponCategories={weaponCategories}
-        selectedWeapon={selectedWeapon}
-        setSelectedWeapon={setSelectedWeapon}
-      />
+      <Nav weaponCategories={weaponCategories} />
       <div className="ml-auto flex items-center">
         <span className="text-sm text-gray-500">ES</span>
         <img src={esIcon} alt="es-ES" className="w-5 h-5 ml-2" />

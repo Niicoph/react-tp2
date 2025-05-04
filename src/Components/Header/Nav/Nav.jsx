@@ -1,16 +1,11 @@
 import { useEffect, useState } from "react";
 import Searchbar from "../../UI/Searchbar";
+import { Link } from "react-router-dom";
 
-export default function Nav({
-  weaponCategories,
-  selectedWeapon,
-  setSelectedWeapon,
-}) {
+export default function Nav({ weaponCategories }) {
   const [weapons, setWeapons] = useState([]);
   const [openSelect, setOpenSelect] = useState(null);
-
-  // estructura
-  // console.log("selectedWeapon", selectedWeapon[1]?.name);
+  const [selectedWeapon, setSelectedWeapon] = useState(null); // Solo una selección
 
   useEffect(() => {
     const fetchWeapons = async () => {
@@ -23,31 +18,29 @@ export default function Nav({
     fetchWeapons();
   }, []);
 
-  // filtramos arma por categoria
   const filterWeaponsByCategory = (category) => {
     return weapons.filter((weapon) => weapon.category === category);
   };
 
-  // drpdown por categoria
   const toggleDropdown = (catId) => {
     setOpenSelect((prev) => (prev === catId ? null : catId));
   };
 
-  // seleccionamos el arma y cerramos el dropdown
-  const selectWeapon = (catId, weapon) => {
-    setSelectedWeapon((prev) => ({ ...prev, [catId]: weapon }));
+  const selectWeapon = (weapon) => {
+    setSelectedWeapon(weapon);
     setOpenSelect(null);
   };
-  // reset selections
+
   const resetSelections = () => {
-    setSelectedWeapon({});
+    setSelectedWeapon(null);
   };
 
   return (
     <nav className="flex items-center justify-between w-full h-full px-4">
       <ul className="flex items-center gap-4 w-full">
         {weaponCategories.map((weaponCat) => {
-          const selected = selectedWeapon[weaponCat.id];
+          const isSelectedCategory =
+            selectedWeapon?.category === weaponCat.name;
 
           return (
             <li key={weaponCat.id} className="relative">
@@ -55,15 +48,17 @@ export default function Nav({
                 onClick={() => toggleDropdown(weaponCat.id)}
                 className="px-3 py-1 rounded flex items-center gap-2"
               >
-                {selected?.image && (
+                {isSelectedCategory && selectedWeapon?.image && (
                   <img
-                    src={selected.image}
-                    alt={selected.name}
+                    src={selectedWeapon.image}
+                    alt={selectedWeapon.name}
                     className="w-4 h-4"
                   />
                 )}
                 <span className="flex justify-center items-center gap-2 text-sm">
-                  {selected?.name || weaponCat.name}
+                  {isSelectedCategory
+                    ? selectedWeapon.name
+                    : weaponCat.name}
                   <img
                     src="https://img.icons8.com/material-outlined/24/expand-arrow--v1.png"
                     alt="dropdown"
@@ -75,12 +70,13 @@ export default function Nav({
               {openSelect === weaponCat.id && (
                 <div
                   className="absolute mt-[18px] border-t border-t-orange-primary bg-slate-100 border-2 border-slate-100 rounded shadow-xl z-10 w-48 max-h-80 overflow-auto scrollbar-hidden
-    transition-all duration-200 ease-out origin-top scale-95 opacity-0 animate-dropdown"
+                  transition-all duration-200 ease-out origin-top scale-95 opacity-0 animate-dropdown"
                 >
                   {filterWeaponsByCategory(weaponCat.name).map((weapon) => (
-                    <div
+                    <Link
+                      to={`/?weapon=${weapon.name}`}
                       key={weapon.id}
-                      onClick={() => selectWeapon(weaponCat.id, weapon)}
+                      onClick={() => selectWeapon(weapon)}
                       className="px-2 py-2 hover:bg-gray-100 cursor-pointer flex items-center gap-2"
                     >
                       <img
@@ -89,7 +85,7 @@ export default function Nav({
                         className="w-7 h-7"
                       />
                       <span>{weapon.name}</span>
-                    </div>
+                    </Link>
                   ))}
                 </div>
               )}
@@ -97,12 +93,13 @@ export default function Nav({
           );
         })}
         <li>
-          <button
+          <Link
+            to={"/"}
             onClick={resetSelections}
             className="text-sm px-3 py-1 bg-red-500 hover:bg-red-600 text-white rounded"
           >
             Clear
-          </button>
+          </Link>
         </li>
         <li className="flex items-center w-3/4">
           <Searchbar />

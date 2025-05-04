@@ -1,6 +1,7 @@
 export const routes = {
     home: "/",
-    notFound: "*",
     skinsId: "/skins/:id",
+    skinsModel: "/skins/:model",
     favorites: "/favorites",
+    notFound: "*",
 };

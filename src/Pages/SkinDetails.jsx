@@ -15,8 +15,9 @@ export default function SkinDetails() {
   const [description, setDescription] = useState([]);
   const [italic, setItalic] = useState([]);
   const [hoveredId, setHoveredId] = useState(null);
-  // Usado en el Header para el filtro de armas, la busqueda no lo usa
-  const [selectedWeapon, setSelectedWeapon] = useState({});
+  const [favorites, setFavorites] = useState(
+    JSON.parse(localStorage.getItem("favorites")) || []
+  );
 
   useEffect(() => {
     const fetchSkins = async () => {
@@ -52,6 +53,17 @@ export default function SkinDetails() {
     }
   }, [skin]);
 
+  const toggleFavorite = (skinId) => {
+    let updatedFavorites;
+    if (favorites.includes(skinId)) {
+      updatedFavorites = favorites.filter((id) => id !== skinId);
+    } else {
+      updatedFavorites = [...favorites, skinId];
+    }
+    setFavorites(updatedFavorites);
+    localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+  };
+
   if (loading) {
     return <LoadingLogo />;
   }
@@ -70,10 +82,7 @@ export default function SkinDetails() {
     return (
       <div className="flex justify-center items-center w-full">
         <main className="flex flex-col items-center w-4/6 min-h-screen">
-          <Header
-            selectedWeapon={selectedWeapon}
-            setSelectedWeapon={setSelectedWeapon}
-          />
+          <Header />
           <div className="flex flex-col flex-grow w-full pb-10 pt-5 fade-in">
             <div className="pb-10">
               <Link to={routes.home}>
@@ -89,6 +98,8 @@ export default function SkinDetails() {
                   hoveredId={hoveredId}
                   onHover={() => setHoveredId(skin.id)}
                   onLeave={() => setHoveredId(null)}
+                  liked={favorites.includes(skin.id)}
+                  onToggleFavorite={() => toggleFavorite(skin.id)}
                 />
               </div>
               <div className="basis-2/3 bg-white border border-gray-200 rounded-xl shadow-sm p-4 text-gray-800 flex flex-col">

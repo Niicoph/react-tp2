@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
+import { useLocation } from "react-router";
 import Card from "../UI/Card";
 import RarityFilter from "../RarityFilter/RarityFilter";
 import LoadingLogo from "../UI/LoadingLogo/LoadingLogo";
 
-export default function Main({ inputSearch, selectedWeapon }) {
+export default function Main({ inputSearch }) {
   const [allSkins, setAllSkins] = useState([]);
   const [filteredSkins, setFilteredSkins] = useState([]);
   const [hoveredId, setHoveredId] = useState(null);
@@ -12,29 +13,22 @@ export default function Main({ inputSearch, selectedWeapon }) {
   const [favorites, setFavorites] = useState(
     JSON.parse(localStorage.getItem("favorites")) || []
   );
+  const [rarityFilter, setRarityFilter] = useState("All");
 
-  const toggleFavorite = (skinId) => {
-    let updatedFavorites;
-    if (favorites.includes(skinId)) {
-      updatedFavorites = favorites.filter((id) => id !== skinId);
-    } else {
-      updatedFavorites = [...favorites, skinId];
-    }
-    setFavorites(updatedFavorites);
-    localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
-  };
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const weaponName = queryParams.get("weapon");
 
   useEffect(() => {
     const fetchSkins = async () => {
       try {
         setLoading(true);
-        await new Promise((resolve) => setTimeout(resolve, 2000));
+        await new Promise((resolve) => setTimeout(resolve, 1000));
         const response = await fetch(
           "https://680ff3de27f2fdac240fe0f4.mockapi.io/v1/cs2/skins"
         );
         const data = await response.json();
         setAllSkins(data);
-        setFilteredSkins(data);
       } catch (error) {
         setError(error);
       } finally {
@@ -53,25 +47,30 @@ export default function Main({ inputSearch, selectedWeapon }) {
       );
     }
 
-    const selectedWeaponNames = Object.values(selectedWeapon).map(
-      (w) => w.name
-    );
-    if (selectedWeaponNames.length > 0) {
-      filtered = filtered.filter((skin) =>
-        selectedWeaponNames.includes(skin.weapon.name)
+    if (weaponName) {
+      filtered = filtered.filter((skin) => skin.weapon === weaponName);
+    }
+
+    if (rarityFilter && rarityFilter !== "All") {
+      filtered = filtered.filter(
+        (skin) => skin.rarity.name === rarityFilter
       );
     }
 
     setFilteredSkins(filtered);
-  }, [inputSearch, selectedWeapon, allSkins]);
+  }, [allSkins, inputSearch, weaponName, rarityFilter]);
 
   const filterByRarity = (rarity) => {
-    if (!rarity || rarity === "All") {
-      setFilteredSkins(allSkins);
-    } else {
-      const filtered = allSkins.filter((skin) => skin.rarity.name === rarity);
-      setFilteredSkins(filtered);
-    }
+    setRarityFilter(rarity);
+  };
+
+  const toggleFavorite = (skinId) => {
+    const updatedFavorites = favorites.includes(skinId)
+      ? favorites.filter((id) => id !== skinId)
+      : [...favorites, skinId];
+
+    setFavorites(updatedFavorites);
+    localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
   };
 
   if (loading) {
