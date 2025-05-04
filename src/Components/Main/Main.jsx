@@ -3,6 +3,7 @@ import { useLocation } from "react-router";
 import Card from "../UI/Card";
 import RarityFilter from "../RarityFilter/RarityFilter";
 import LoadingLogo from "../UI/LoadingLogo/LoadingLogo";
+import Pagination from "../UI/Pagination";
 
 export default function Main({ inputSearch }) {
   const [allSkins, setAllSkins] = useState([]);
@@ -13,6 +14,9 @@ export default function Main({ inputSearch }) {
     JSON.parse(localStorage.getItem("favorites")) || []
   );
   const [rarityFilter, setRarityFilter] = useState("All");
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const skinsPerPage = 8;
 
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
@@ -51,17 +55,12 @@ export default function Main({ inputSearch }) {
     }
 
     if (rarityFilter && rarityFilter !== "All") {
-      filtered = filtered.filter(
-        (skin) => skin.rarity.name === rarityFilter
-      );
+      filtered = filtered.filter((skin) => skin.rarity.name === rarityFilter);
     }
 
     setFilteredSkins(filtered);
+    setCurrentPage(1);
   }, [allSkins, inputSearch, weaponName, rarityFilter]);
-
-  const filterByRarity = (rarity) => {
-    setRarityFilter(rarity);
-  };
 
   const toggleFavorite = (skinId) => {
     const updatedFavorites = favorites.includes(skinId)
@@ -70,6 +69,28 @@ export default function Main({ inputSearch }) {
 
     setFavorites(updatedFavorites);
     localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+  };
+
+  const filterByRarity = (rarity) => {
+    setRarityFilter(rarity);
+  };
+
+  // Paginación
+  const indexOfLastSkin = currentPage * skinsPerPage;
+  const indexOfFirstSkin = indexOfLastSkin - skinsPerPage;
+  const currentSkins = filteredSkins.slice(indexOfFirstSkin, indexOfLastSkin);
+  const totalPages = Math.ceil(filteredSkins.length / skinsPerPage);
+
+  const goToPage = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  const nextPage = () => {
+    if (currentPage < totalPages) setCurrentPage((prev) => prev + 1);
+  };
+
+  const prevPage = () => {
+    if (currentPage > 1) setCurrentPage((prev) => prev - 1);
   };
 
   if (loading) {
@@ -93,16 +114,26 @@ export default function Main({ inputSearch }) {
           <h1 className="text-sm font-medium">No skins found</h1>
         </div>
       ) : (
-        <div className="grid grid-cols-4 gap-10">
-          {filteredSkins.map((skin) => (
-            <Card
-              key={skin.id}
-              skin={skin}
-              liked={favorites.includes(skin.id)}
-              onToggleFavorite={() => toggleFavorite(skin.id)}
-            />
-          ))}
-        </div>
+        <>
+          <div className="grid grid-cols-4 gap-10">
+            {currentSkins.map((skin) => (
+              <Card
+                key={skin.id}
+                skin={skin}
+                liked={favorites.includes(skin.id)}
+                onToggleFavorite={() => toggleFavorite(skin.id)}
+              />
+            ))}
+          </div>
+
+          <Pagination
+            totalPages={totalPages}
+            currentPage={currentPage}
+            goToPage={goToPage}
+            nextPage={nextPage}
+            prevPage={prevPage}
+          />
+        </>
       )}
     </main>
   );

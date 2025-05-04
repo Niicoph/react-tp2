@@ -46,6 +46,7 @@ export default function Favorites() {
     favorites.includes(skin.id)
   );
 
+
   if (loading) return <LoadingLogo />;
 
   if (error) {
@@ -70,7 +71,7 @@ export default function Favorites() {
 
           {favoriteSkins.length === 0 ? (
             <div className="flex justify-start items-center w-full">
-              <h1 className="text-sm font-medium">No skins found</h1>
+              <h1 className="text-sm font-medium">No favorites found</h1>
             </div>
           ) : (
             <div className="grid grid-cols-4 gap-10">

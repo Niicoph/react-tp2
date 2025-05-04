@@ -1,12 +1,10 @@
+import { useState } from "react";
 import { Link } from "react-router";
 import LikeBefore from "../../assets/Icons/likeBefore.png";
 import LikeAfter from "../../assets/Icons/likeAfter.png";
 
-export default function Card({
-  skin,
-  liked = false,
-  onToggleFavorite,
-}) {
+export default function Card({ skin, liked = false, onToggleFavorite }) {
+  const [isLoading, setIsLoading] = useState(true);
 
   return (
     <Link
@@ -29,11 +27,22 @@ export default function Card({
         style={{ backgroundColor: skin.rarity.color }}
       ></div>
 
-      <img
-        src={skin.image}
-        alt={skin.name}
-        className="object-contain w-3/4 h-3/4 flex justify-center items-center"
-      />
+      <div className="w-3/4 h-3/4 flex justify-center items-center relative">
+        {isLoading && (
+          <div className="absolute w-5 h-5 border-2 border-black border-t-transparent rounded-full animate-spin" />
+        )}
+        <img
+          src={skin.image}
+          alt={skin.name}
+          className={`object-contain w-full h-full transition-opacity duration-300 ${
+            isLoading ? "opacity-0" : "opacity-100"
+          }`}
+          //   Atributos necesarios
+          onLoad={() => setIsLoading(false)}
+          onError={() => setIsLoading(false)}
+        />
+      </div>
+
       <h3 className="text-sm font-bold">{skin.name}</h3>
       <p className="text-xs text-gray-500">{skin.rarity.name}</p>
     </Link>
