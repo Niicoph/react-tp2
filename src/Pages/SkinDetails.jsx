@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
+import { Navigate } from "react-router";
 import { routes } from "../routes/routes.js";
 import LoadingLogo from "../Components/UI/LoadingLogo/LoadingLogo.jsx";
 import Header from "../Components/Header/Header.jsx";
@@ -25,8 +26,12 @@ export default function SkinDetails() {
         const response = await fetch(
           `https://680ff3de27f2fdac240fe0f4.mockapi.io/v1/cs2/skins/${id}`
         );
-        const data = await response.json();
-        setSkin(data);
+        if (response.ok) {
+          const data = await response.json();
+          setSkin(data);
+        } else {
+          throw new Error(`Skin no encontrada (Código ${response.status})`);
+        }
       } catch (error) {
         setError(error);
       } finally {
@@ -37,7 +42,7 @@ export default function SkinDetails() {
   }, [id]);
 
   useEffect(() => {
-    if (skin) {
+    if (skin && skin !== null && skin !== undefined) {
       const normalized = skin.description.replace(/\\n/g, "\n");
       const noHtml = normalized.replace(/<[^>]+>/g, "");
       const italic = normalized.match(/<i>(.*?)<\/i>/);
@@ -51,6 +56,10 @@ export default function SkinDetails() {
       setDescription(cleaned);
     }
   }, [skin]);
+
+  if (error?.message?.includes("404")) {
+    return <Navigate to={routes.notFound} replace />;
+  }
 
   const toggleFavorite = (skinId) => {
     let updatedFavorites;
@@ -77,7 +86,7 @@ export default function SkinDetails() {
 
   // const [selectedWeapon, setSelectedWeapon] = useState({});
 
-  if (skin) {
+  if (skin && skin !== null && skin !== undefined) {
     return (
       <div className="flex justify-center items-center w-full">
         <main className="flex flex-col items-center w-4/6 min-h-screen">
