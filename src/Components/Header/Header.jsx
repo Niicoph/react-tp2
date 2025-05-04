@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
 import esIcon from "../../assets/Icons/es-ES.png";
-import Favorites from "../../assets/Icons/LikeBefore.png";
+import favBefore from "../../assets/Icons/LikeBefore.png";
+import favAfter from "../../assets/Icons/LikeAfter.png";
 import Nav from "./Nav/Nav";
 import Logo from "../../assets/logo.svg";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export default function Header() {
   const [weaponCategories, setWeaponCategories] = useState([]);
+  const location = useLocation();
+  const isFavoritesPage = location.pathname === "/favorites";
 
   useEffect(() => {
     const fetchWeaponsCategories = async () => {
@@ -30,7 +33,7 @@ export default function Header() {
         <img src={esIcon} alt="es-ES" className="w-5 h-5 ml-2" />
         <Link to={"/favorites"}>
           <img
-            src={Favorites}
+            src={isFavoritesPage ? favAfter : favBefore}
             alt="Favorites"
             className="w-5 h-5 ml-4 cursor-pointer"
           />

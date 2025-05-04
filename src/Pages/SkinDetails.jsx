@@ -14,7 +14,6 @@ export default function SkinDetails() {
   const { id } = useParams();
   const [description, setDescription] = useState([]);
   const [italic, setItalic] = useState([]);
-  const [hoveredId, setHoveredId] = useState(null);
   const [favorites, setFavorites] = useState(
     JSON.parse(localStorage.getItem("favorites")) || []
   );
@@ -95,9 +94,6 @@ export default function SkinDetails() {
                 <Card
                   key={skin.id}
                   skin={skin}
-                  hoveredId={hoveredId}
-                  onHover={() => setHoveredId(skin.id)}
-                  onLeave={() => setHoveredId(null)}
                   liked={favorites.includes(skin.id)}
                   onToggleFavorite={() => toggleFavorite(skin.id)}
                 />

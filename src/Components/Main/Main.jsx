@@ -7,7 +7,6 @@ import LoadingLogo from "../UI/LoadingLogo/LoadingLogo";
 export default function Main({ inputSearch }) {
   const [allSkins, setAllSkins] = useState([]);
   const [filteredSkins, setFilteredSkins] = useState([]);
-  const [hoveredId, setHoveredId] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [favorites, setFavorites] = useState(
@@ -100,9 +99,6 @@ export default function Main({ inputSearch }) {
               key={skin.id}
               skin={skin}
               liked={favorites.includes(skin.id)}
-              hoveredId={hoveredId}
-              onHover={() => setHoveredId(skin.id)}
-              onLeave={() => setHoveredId(null)}
               onToggleFavorite={() => toggleFavorite(skin.id)}
             />
           ))}

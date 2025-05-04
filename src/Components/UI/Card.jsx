@@ -4,21 +4,13 @@ import LikeAfter from "../../assets/Icons/likeAfter.png";
 
 export default function Card({
   skin,
-  hoveredId,
-  onHover,
-  onLeave,
   liked = false,
   onToggleFavorite,
 }) {
-  const isOtherHovered = hoveredId && hoveredId !== skin.id;
 
   return (
     <Link
-      onMouseEnter={onHover}
-      onMouseLeave={onLeave}
-      className={`relative transition duration-200 ease-in-out ${
-        isOtherHovered ? "blur-[1px] opacity-60" : ""
-      } flex flex-col justify-center items-center w-full h-80 shadow-primary rounded-xl bg-white border border-slate-200 hover:border-2 hover:border-orange-primary`}
+      className={`relative transition duration-200 ease-in-out flex flex-col justify-center items-center w-full h-80 shadow-primary rounded-xl bg-white border border-slate-200 hover:border-2 hover:border-orange-primary`}
       to={`/skins/${skin.id}`}
     >
       <button
