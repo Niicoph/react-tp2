@@ -43,8 +43,8 @@ export default function Card({ skin, liked = false, onToggleFavorite }) {
         />
       </div>
 
-      <h3 className="text-sm font-bold">{skin.name}</h3>
-      <p className="text-xs text-gray-500">{skin.rarity.name}</p>
+      <h3 className="text-sm font-bold mx-5">{skin.name}</h3>
+      <p className="text-xs text-gray-500 my-3">{skin.rarity.name}</p>
     </Link>
   );
 }
