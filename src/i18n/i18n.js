@@ -24,6 +24,9 @@ const resources = {
       gradeMythical: "Restricted",
       gradeLegendary: "Classified",
       noresults: "No results found",
+      nodescription: "No description found",
+      crate: "Crate",
+      containedIn: "Contained in: ",
     },
   },
   es: {
@@ -44,6 +47,9 @@ const resources = {
       gradeMythical: "Restringido",
       gradeLegendary: "Clasificado",
       noresults: "No se encontraron resultados",
+      nodescription: "Sin descripción",
+      crate: "Caja",
+      containedIn: "Contenida en: ",
     },
   },
 };
