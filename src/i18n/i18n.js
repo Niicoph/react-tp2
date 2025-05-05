@@ -18,6 +18,11 @@ const resources = {
       noskins: "No skins found",
       noFavorites: "No favorites found",
       favorites: "Favorites",
+      gradeAll: "All" , 
+      gradeRare: "Mil-Spec Grade",    
+      gradeAncient: "Covert", 
+      gradeMythical: "Restricted",
+      gradeLegendary: "Classified" 
 
     },
   },
@@ -33,6 +38,11 @@ const resources = {
       noskins: "No se encontraron skins",
       noFavorites: "No se encontraron favoritos",
       favorites: "Favoritos",
+      gradeAll: "Todos",
+      gradeRare: "Grado Militar",
+      gradeAncient: "Encubierto",
+      gradeMythical: "Restringido",
+      gradeLegendary: "Clasificado", 
     },
   },
 };

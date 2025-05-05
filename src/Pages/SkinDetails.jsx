@@ -7,6 +7,7 @@ import Header from "../Components/Header/Header.jsx";
 import Footer from "../Components/Footer/Footer.jsx";
 import Card from "../Components/UI/Card.jsx";
 import { Link } from "react-router-dom";
+import { useTranslation } from 'react-i18next'
 
 export default function SkinDetails() {
   const [skin, setSkin] = useState(null);
@@ -18,7 +19,7 @@ export default function SkinDetails() {
   const [favorites, setFavorites] = useState(
     JSON.parse(localStorage.getItem("favorites")) || []
   );
-
+  const { t } = useTranslation();
   useEffect(() => {
     const fetchSkins = async () => {
       try {
@@ -48,11 +49,11 @@ export default function SkinDetails() {
       const italic = normalized.match(/<i>(.*?)<\/i>/);
       const cleanedItalic = italic
         ? italic[1].split("\n")
-        : "No hay una descripción disponible";
+        : t('nodescription');
       setItalic(cleanedItalic);
       const cleaned = noHtml
         ? noHtml.split("\n")[0]
-        : "No hay una descripción disponible";
+        : t('nodescription');
       setDescription(cleaned);
     }
   }, [skin]);
@@ -94,7 +95,7 @@ export default function SkinDetails() {
           <div className="flex flex-col flex-grow w-full pb-10 pt-5 fade-in">
             <div className="pb-10">
               <Link to={routes.home}>
-                <span>Home</span>
+                <span> {t('home')}</span>
               </Link>
               <span> / {skin.weapon}</span>
             </div>
