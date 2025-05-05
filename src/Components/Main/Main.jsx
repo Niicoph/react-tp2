@@ -4,6 +4,7 @@ import Card from "../UI/Card";
 import RarityFilter from "../RarityFilter/RarityFilter";
 import LoadingLogo from "../UI/LoadingLogo/LoadingLogo";
 import Pagination from "../UI/Pagination";
+import { useTranslation } from "react-i18next";
 
 export default function Main({ inputSearch }) {
   const [allSkins, setAllSkins] = useState([]);
@@ -21,6 +22,8 @@ export default function Main({ inputSearch }) {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const weaponName = queryParams.get("weapon");
+
+  const { t } = useTranslation();
 
   useEffect(() => {
     const fetchSkins = async () => {
@@ -111,7 +114,7 @@ export default function Main({ inputSearch }) {
 
       {filteredSkins.length === 0 ? (
         <div className="flex justify-start items-center w-full">
-          <h1 className="text-sm font-medium">No skins found</h1>
+          <h1 className="text-sm font-medium">{t('noskins')}</h1>
         </div>
       ) : (
         <>

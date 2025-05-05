@@ -1,5 +1,9 @@
 // src/UI/Pagination.jsx
+import { useTranslation } from 'react-i18next'
+
 export default function Pagination({ currentPage, totalPages, goToPage, nextPage, prevPage }) {
+    const { t  } = useTranslation();
+
     return (
       <div className="flex justify-center mt-6 gap-2">
         <button
@@ -7,7 +11,7 @@ export default function Pagination({ currentPage, totalPages, goToPage, nextPage
           disabled={currentPage === 1}
           className="px-3 py-1 bg-gray-200 rounded disabled:opacity-50"
         >
-          Prev
+          {t('prev')}
         </button>
 
         {[...Array(totalPages)].map((_, i) => (
@@ -27,7 +31,7 @@ export default function Pagination({ currentPage, totalPages, goToPage, nextPage
           disabled={currentPage === totalPages}
           className="px-3 py-1 bg-gray-200 rounded disabled:opacity-50"
         >
-          Next
+          {t('next')}
         </button>
       </div>
     );

@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import Searchbar from "../../UI/Searchbar";
 import { Link } from "react-router-dom";
+import { useTranslation } from 'react-i18next'
 
 export default function Nav({ weaponCategories }) {
   const [weapons, setWeapons] = useState([]);
   const [openSelect, setOpenSelect] = useState(null);
   const [selectedWeapon, setSelectedWeapon] = useState(null); // Solo una selección
+  const { t } = useTranslation();
 
   useEffect(() => {
     const fetchWeapons = async () => {
@@ -98,7 +100,7 @@ export default function Nav({ weaponCategories }) {
             onClick={resetSelections}
             className="text-sm px-3 py-1 bg-red-500 hover:bg-red-600 text-white rounded"
           >
-            Clear
+            {t('clear')}
           </Link>
         </li>
         <li className="flex items-center w-3/4">
