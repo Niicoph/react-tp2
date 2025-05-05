@@ -22,8 +22,8 @@ const resources = {
       gradeRare: "Mil-Spec Grade",    
       gradeAncient: "Covert", 
       gradeMythical: "Restricted",
-      gradeLegendary: "Classified" 
-
+      gradeLegendary: "Classified",
+      noresults: "No results found",
     },
   },
   es: {
@@ -42,7 +42,8 @@ const resources = {
       gradeRare: "Grado Militar",
       gradeAncient: "Encubierto",
       gradeMythical: "Restringido",
-      gradeLegendary: "Clasificado", 
+      gradeLegendary: "Clasificado",
+      noresults: "No se encontraron resultados",
     },
   },
 };

@@ -33,7 +33,7 @@ export default function Searchbar() {
   return (
     <div className="relative w-full max-w-md mx-auto">
       <Input value={query} onChange={(e) => setQuery(e.target.value)} />
-      {query.trim() !== "" && <Dropdown skins={filteredSkins} />}
+      <Dropdown skins={filteredSkins} query={query.trim()}/>
     </div>
   );
 }
