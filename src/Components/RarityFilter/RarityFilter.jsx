@@ -1,7 +1,7 @@
 import RarityButton from "./RarityButton";
 
 const rarities = [
-  { name: "All" , color: "#000000" },
+  { name: "All" , color: "#FFFFFF" },
   { name: "Mil-Spec Grade", color: "#4b69ff" },
   { name: "Covert", color: "#eb4b4b" },
   { name: "Restricted", color: "#8847ff" },
@@ -10,7 +10,7 @@ const rarities = [
 
 export default function RarityFilter({ filterByRarity }) {
   return (
-    <ul className="flex gap-2 w-full flex-wrap">
+    <ul className="flex gap-2 w-full flex-wrap text-white">
       {rarities.map((rarity) => (
         <li key={rarity.name}>
           <RarityButton

@@ -17,7 +17,7 @@ export default function Main({ inputSearch }) {
   const [rarityFilter, setRarityFilter] = useState("All");
 
   const [currentPage, setCurrentPage] = useState(1);
-  const skinsPerPage = 8;
+  const skinsPerPage = 16;
 
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
@@ -118,7 +118,7 @@ export default function Main({ inputSearch }) {
         </div>
       ) : (
         <>
-          <div className="grid grid-cols-4 gap-10">
+             <div className="flex-1  grid grid-cols-4 gap-10">
             {currentSkins.map((skin) => (
               <Card
                 key={skin.id}

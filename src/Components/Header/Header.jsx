@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import favBefore from "../../assets/Icons/LikeBefore.png";
-import favAfter from "../../assets/Icons/LikeAfter.png";
+import favBefore from "../../assets/Icons/LikeBefore.svg";
+import favAfter from "../../assets/Icons/LikeAfter.svg";
 import Nav from "./Nav/Nav";
 import LanguageSelector from "./LanguageSelector/LanguageSelector";
 import Logo from "../../assets/logo.svg";
@@ -23,9 +23,9 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="w-full h-16 flex items-center border-b border-dotted border-slate-300 sticky top-0 z-10 bg-opacity-90 backdrop-blur-sm px-2">
+    <header className="w-full h-16 flex items-center border-b border-dotted border-slate-300 sticky top-0 z-10 bg-opacity-90 backdrop-blur-sm px-2 text-white">
       <Link to={"/"}>
-        <img src={Logo} alt="logo !eco" className="w-10 h-10" />
+        <img src={Logo} alt="logo !eco" className="w-14 h-14" />
       </Link>
       <Nav weaponCategories={weaponCategories} />
       <div className="ml-auto flex items-center">

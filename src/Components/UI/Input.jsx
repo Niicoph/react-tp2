@@ -8,7 +8,7 @@ export default function Input({ value, onChange }) {
       value={value}
       onChange={onChange}
       type="text"
-      className="w-full h-8 px-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder:text-sm"
+      className="w-full h-8 px-4 border border-orange-primary rounded-md focus:outline-none focus:ring-2 focus:ring-orange-primary placeholder:text-sm"
       placeholder={t('search')}
     ></input>
   );

@@ -4,7 +4,7 @@ import Footer from "../Components/Footer/Footer";
 
 export default function Home() {
   return (
-    <div className="flex justify-center items-center w-full">
+    <div className="flex justify-center items-center w-full bg-[#0f0f11]">
       <main className="flex flex-col items-center w-4/6 min-h-screen">
         <Header />
         <Main />

@@ -7,7 +7,7 @@ import Header from "../Components/Header/Header.jsx";
 import Footer from "../Components/Footer/Footer.jsx";
 import Card from "../Components/UI/Card.jsx";
 import { Link } from "react-router-dom";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 import CardCrate from "../Components/UI/CardCrate.jsx";
 
 export default function SkinDetails() {
@@ -61,25 +61,19 @@ export default function SkinDetails() {
           }
         } catch (error) {
           setError(error);
-        }  finally {
+        } finally {
           setLoading(false);
         }
-      };    
+      };
       fetchCrates();
 
       const normalized = skin.description.replace(/\\n/g, "\n");
       const noHtml = normalized.replace(/<[^>]+>/g, "");
       const italic = normalized.match(/<i>(.*?)<\/i>/);
-      const cleanedItalic = italic
-        ? italic[1].split("\n")
-        : t('nodescription');
+      const cleanedItalic = italic ? italic[1].split("\n") : t("nodescription");
       setItalic(cleanedItalic);
-      const cleaned = noHtml
-        ? noHtml.split("\n")[0]
-        : t('nodescription');
+      const cleaned = noHtml ? noHtml.split("\n")[0] : t("nodescription");
       setDescription(cleaned);
-
-
     }
   }, [skin]);
 
@@ -112,52 +106,62 @@ export default function SkinDetails() {
 
   // const [selectedWeapon, setSelectedWeapon] = useState({});
 
-  if (skin && skin !== null && skin !== undefined && crate && crate !== null && crate !== undefined) {
+  if (
+    skin &&
+    skin !== null &&
+    skin !== undefined &&
+    crate &&
+    crate !== null &&
+    crate !== undefined
+  ) {
     return (
       <div className="flex justify-center items-center w-full">
         <main className="flex flex-col items-center w-4/6 min-h-screen">
           <Header />
           <div className="flex flex-col flex-grow w-full pb-10 pt-5 fade-in">
-          {/* Breadcrumb */}
-          <div className="pb-10">
-            <Link to={routes.home}>
-              <span>{t('home')}</span>
-            </Link>
-            <span> / {skin.weapon}</span>
-          </div>
-
-          {/* Arma y caja en una fila */}
-          <div className="flex flex-row gap-10 justify-between">
-            {/* Arma (izquierda) */}
-            <div className="basis-1/2">
-              <Card
-                key={skin.id}
-                skin={skin}
-                liked={favorites.includes(skin.id)}
-                onToggleFavorite={() => toggleFavorite(skin.id)}
+            {/* Breadcrumb */}
+            <div className="pb-10 flex  items-center">
+              <Link to={routes.home}>
+                <span className="flex gap-2">{t("home")}</span>
+              </Link>
+              <img
+                src="https://img.icons8.com/material-rounded/24/forward.png"
+                alt="forward-arrow"
+                className="w-4 h-4"
               />
+              <span> {skin.weapon}</span>
             </div>
 
-            {/* Caja (derecha) */}
-            <div className="basis-1/4">
-              <div className="w-full text-center text-sm font-semibold text-gray-700 tracking-wide my-3">
-                {t('containedIn')}
+            {/* Arma y caja en una fila */}
+            <div className="flex flex-row gap-10 justify-between">
+              {/* Arma (izquierda) */}
+              <div className="basis-1/2">
+                <Card
+                  key={skin.id}
+                  skin={skin}
+                  liked={favorites.includes(skin.id)}
+                  onToggleFavorite={() => toggleFavorite(skin.id)}
+                />
               </div>
-              <CardCrate
-                crate={crate}
-              />
-            </div>
-          </div>
 
-          {/* Descripción debajo */}
-          <div className="mt-10 bg-white border border-gray-200 rounded-xl shadow-sm p-4 text-gray-800 flex flex-col">
-            <div className="text-lg font-semibold">{skin.name}</div>
-            <div className="flex-1">
-              <p>{description}</p>
+              {/* Caja (derecha) */}
+              <div className="basis-1/4">
+                <div className="w-full text-center text-sm font-semibold text-gray-700 tracking-wide my-3">
+                  {t("containedIn")}
+                </div>
+                <CardCrate crate={crate} />
+              </div>
             </div>
-            <p className="italic text-gray-600 mt-auto">{italic}</p>
+
+            {/* Descripción debajo */}
+            <div className="mt-10 bg-white border border-gray-200 rounded-xl shadow-sm p-4 text-gray-800 flex flex-col">
+              <div className="text-lg font-semibold">{skin.name}</div>
+              <div className="flex-1">
+                <p>{description}</p>
+              </div>
+              <p className="italic text-gray-600 mt-auto">{italic}</p>
+            </div>
           </div>
-        </div>
           <Footer />
         </main>
       </div>
