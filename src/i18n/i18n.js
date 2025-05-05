@@ -26,7 +26,8 @@ const resources = {
       noresults: "No results found",
       nodescription: "No description found",
       crate: "Crate",
-      containedIn: "Contained in: ",
+      containedIn: "Contained in",
+      release: "Release"
     },
   },
   es: {
@@ -49,7 +50,9 @@ const resources = {
       noresults: "No se encontraron resultados",
       nodescription: "Sin descripción",
       crate: "Caja",
-      containedIn: "Contenida en: ",
+      containedIn: "Contenida en",
+      release: "Lanzamiento"
+
     },
   },
 };
