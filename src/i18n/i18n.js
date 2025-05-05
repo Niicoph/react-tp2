@@ -16,6 +16,8 @@ const resources = {
       rights: "All rights reserved.",
       socials: "Social Networks",
       noskins: "No skins found",
+      noFavorites: "No favorites found",
+      favorites: "Favorites",
 
     },
   },
@@ -29,6 +31,8 @@ const resources = {
       rights: "Todos los derechos reservados.",
       socials: "Redes Sociales",
       noskins: "No se encontraron skins",
+      noFavorites: "No se encontraron favoritos",
+      favorites: "Favoritos",
     },
   },
 };

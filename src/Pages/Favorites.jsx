@@ -5,6 +5,7 @@ import Footer from "../Components/Footer/Footer";
 import { routes } from "../Routes/Routes";
 import LoadingLogo from "../Components/UI/LoadingLogo/LoadingLogo";
 import Card from "../Components/UI/Card"; // Asegúrate de importar correctamente
+import { useTranslation } from "react-i18next";
 
 export default function Favorites() {
   const [favorites, setFavorites] = useState(
@@ -13,6 +14,8 @@ export default function Favorites() {
   const [allSkins, setAllSkins] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+
+  const { t } = useTranslation();
 
   useEffect(() => {
     const fetchSkins = async () => {
@@ -66,12 +69,12 @@ export default function Favorites() {
             <Link to={routes.home}>
               <span>Home</span>
             </Link>
-            <span> / Favorites</span>
+            <span> / {t('favorites')}</span> 
           </div>
 
           {favoriteSkins.length === 0 ? (
             <div className="flex justify-start items-center w-full">
-              <h1 className="text-sm font-medium">No favorites found</h1>
+              <h1 className="text-sm font-medium">{t('noFavorites')}</h1>
             </div>
           ) : (
             <div className="grid grid-cols-4 gap-10">
