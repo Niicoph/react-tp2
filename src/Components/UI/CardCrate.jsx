@@ -5,7 +5,7 @@ export default function CardCrate({ crate }) {
     const [loading, setLoading] = useState(true);
     const { t } = useTranslation();
     return(
-        <div className={`relative transition duration-200 ease-in-out flex flex-col justify-center items-center w-full h-69 shadow-primary rounded-xl bg-white border border-slate-200 hover:border-2 hover:border-orange-primary`}>
+        <div className={`relative transition duration-200 pt-3 ease-in-out flex flex-col justify-center items-center w-full h-69 shadow-primary rounded-lg bg-black-secondary hover:border-2 hover:border-orange-primary`}>
             <div className="w-full h-48 flex justify-center items-center relative mb-4">
                 {loading && (
                     <div className="absolute w-5 h-5 border-2 border-black border-t-transparent rounded-full animate-spin" />
@@ -20,8 +20,8 @@ export default function CardCrate({ crate }) {
                     onError={() => setLoading(false)}
                 />
             </div>
-            <h3 className="text-sm font-bold">{crate.name}</h3>
-            <p className="text-xs text-gray-500 my-3">{t('release')}: {crate.first_sale_date}</p>
+            <h3 className="text-sm text-white font-bold mx-5">{crate.name}</h3>
+            <p className="text-xs text-white my-3">{t('release')}: {crate.first_sale_date}</p>
         </div>
     );
 }

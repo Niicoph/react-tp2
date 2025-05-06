@@ -61,16 +61,18 @@ export default function Favorites() {
   }
 
   return (
-    <div className="flex justify-center items-center w-full">
+    <div className="flex justify-center items-center w-full bg-black-primary">
       <main className="flex flex-col items-center w-4/6 min-h-screen">
         <Header />
         <div className="flex flex-col flex-grow w-full pb-10 pt-5 fade-in">
-          <div className="pb-10">
-            <Link to={routes.home}>
-              <span>Home</span>
-            </Link>
-            <span> / {t('favorites')}</span> 
-          </div>
+          
+        <div className="pb-10 flex text-p-primary items-center">
+              <Link to={routes.home}>
+                <span className="flex gap-2">{t("home")}</span>
+              </Link>
+              <p className="mx-1"> / </p>
+              <span> {t('favorites')} </span>
+            </div>
 
           {favoriteSkins.length === 0 ? (
             <div className="flex justify-start items-center w-full">

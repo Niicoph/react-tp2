@@ -26,7 +26,7 @@ const languages = [
 
         <img className="w-6 h-6 rounded-full m-2" src={currentLang.flag} alt={currentLang.code} />
 
-        <select value={currentLangCode} onChange={handleChange}>
+        <select value={currentLangCode} onChange={handleChange} className='bg-black-secondary'>
           {languages.map((lang) => (
             <option key={lang.code} value={lang.code}>
               {lang.name}

@@ -115,20 +115,16 @@ export default function SkinDetails() {
     crate !== undefined
   ) {
     return (
-      <div className="flex justify-center items-center w-full">
+      <div className="flex justify-center items-center w-full bg-black-primary">
         <main className="flex flex-col items-center w-4/6 min-h-screen">
           <Header />
           <div className="flex flex-col flex-grow w-full pb-10 pt-5 fade-in">
             {/* Breadcrumb */}
-            <div className="pb-10 flex  items-center">
+            <div className="pb-10 flex text-p-primary items-center">
               <Link to={routes.home}>
                 <span className="flex gap-2">{t("home")}</span>
               </Link>
-              <img
-                src="https://img.icons8.com/material-rounded/24/forward.png"
-                alt="forward-arrow"
-                className="w-4 h-4"
-              />
+              <p className="mx-1"> / </p>
               <span> {skin.weapon}</span>
             </div>
 
@@ -146,7 +142,7 @@ export default function SkinDetails() {
 
               {/* Caja (derecha) */}
               <div className="basis-1/4">
-                <div className="w-full text-center text-sm font-semibold text-gray-700 tracking-wide my-3">
+                <div className="w-full text-center text-sm font-semibold text-p-primary tracking-wide my-3">
                   {t("containedIn")}
                 </div>
                 <CardCrate crate={crate} />
@@ -154,12 +150,12 @@ export default function SkinDetails() {
             </div>
 
             {/* Descripción debajo */}
-            <div className="mt-10 bg-white border border-gray-200 rounded-xl shadow-sm p-4 text-gray-800 flex flex-col">
+            <div className="mt-10 border bg-black-secondary border-black-primary rounded-xl shadow-sm p-4 text-p-primary flex flex-col">
               <div className="text-lg font-semibold">{skin.name}</div>
               <div className="flex-1">
                 <p>{description}</p>
               </div>
-              <p className="italic text-gray-600 mt-auto">{italic}</p>
+              <p className="italic text-p-secondary mt-auto">{italic}</p>
             </div>
           </div>
           <Footer />
