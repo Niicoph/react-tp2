@@ -10,7 +10,7 @@ const rarities = [
 
 export default function RarityFilter({ filterByRarity }) {
   return (
-    <ul className="flex gap-2 w-full flex-wrap text-white">
+    <ul className="flex gap-4 w-full flex-wrap text-white bg-[#151719] p-4 rounded-md ">
       {rarities.map((rarity) => (
         <li key={rarity.name}>
           <RarityButton

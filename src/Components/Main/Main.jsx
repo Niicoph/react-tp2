@@ -85,7 +85,7 @@ export default function Main({ inputSearch }) {
   useEffect(() => {
     const queryParamsFilter = new URLSearchParams(location.search);
     const weaponFilter = queryParamsFilter.get("home");
-    if (!weaponFilter) {         
+    if (!weaponFilter) {
       resetFilterByRarity();
     }
   }, [location]);
@@ -130,7 +130,7 @@ export default function Main({ inputSearch }) {
         </div>
       ) : (
         <>
-             <div className="flex-1  grid grid-cols-4 gap-10">
+             <div className="flex-1  grid grid-cols-4 gap-5 rounded-md bg-[#151719] p-5">
             {currentSkins.map((skin) => (
               <Card
                 key={skin.id}

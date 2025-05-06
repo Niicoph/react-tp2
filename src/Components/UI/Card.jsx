@@ -10,9 +10,9 @@ export default function Card({ skin, liked = false, onToggleFavorite }) {
   return (
     <Link
       style={{
-        backgroundColor: skin.rarity.color,
+        backgroundColor: `${skin.rarity.color}40`,
       }}
-      className={`relative transition duration-200 pt-3 ease-in-out flex flex-col justify-center items-center w-full h-80 shadow-primary rounded-2xl bg-[#ff9b01] backdrop-blur-lg hover:border-2 hover:border-orange-primary`}
+      className={`relative transition duration-300 pt-3 ease-in-out flex flex-col justify-center items-center w-full h-80 rounded-md backdrop-blur-lg hover:scale-105`}
       to={`/skins/${skin.id}`}
     >
       <button
@@ -21,7 +21,7 @@ export default function Card({ skin, liked = false, onToggleFavorite }) {
           e.preventDefault();
           onToggleFavorite();
         }}
-        className="absolute top-3 right-3 w-5 h-5 cursor-pointer"
+        className="absolute top-2 right-4 w-5 h-5 cursor-pointer"
       >
         <img
           src={liked ? LikeAfter : LikeBefore}
@@ -31,7 +31,7 @@ export default function Card({ skin, liked = false, onToggleFavorite }) {
       </button>
 
       <div
-        className="w-4/6 h-1 rounded-full"
+        className="w-4/6 h-1 rounded-full mt-1"
         style={{ backgroundColor: skin.rarity.color }}
       ></div>
 
@@ -50,7 +50,7 @@ export default function Card({ skin, liked = false, onToggleFavorite }) {
           onError={() => setIsLoading(false)}
         />
       </div>
-      <div className="flex flex-col justify-center items-center w-full h-1/4 bg-black-secondary rounded-b-2xl">
+      <div className="flex flex-col justify-center items-center w-full h-1/4 bg-[#1e2022] rounded-b-md">
         <h3 className="text-sm text-white font-bold">{skin.name}</h3>
         <p className="text-xs text-white">{skin.rarity.name}</p>
       </div>

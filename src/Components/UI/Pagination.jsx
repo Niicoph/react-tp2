@@ -5,11 +5,11 @@ export default function Pagination({ currentPage, totalPages, goToPage, nextPage
     const { t  } = useTranslation();
 
     return (
-      <div className="flex justify-center mt-6 gap-2">
+      <div className="flex justify-center mt-6 gap-2 text-white">
         <button
           onClick={prevPage}
           disabled={currentPage === 1}
-          className="px-3 py-1 bg-orange-primary rounded disabled:opacity-50 hover:bg-orange-600"
+          className="px-3 py-1 bg-[#1e2022] rounded disabled:opacity-50 hover:bg-[#323436]"
         >
           {t('prev')}
         </button>
@@ -19,7 +19,7 @@ export default function Pagination({ currentPage, totalPages, goToPage, nextPage
             key={i}
             onClick={() => goToPage(i + 1)}
             className={`px-3 py-1 rounded text-white ${
-              currentPage === i + 1 ? "bg-orange-primary hover:bg-orange-600" : " bg-black-secondary hover:bg-orange-600"
+              currentPage === i + 1 ? " bg-[#151719] hover:bg-[#323436]" : " bg-[#151719] hover:bg-[#323436] "
             }`}
           >
             {i + 1}
@@ -29,7 +29,7 @@ export default function Pagination({ currentPage, totalPages, goToPage, nextPage
         <button
           onClick={nextPage}
           disabled={currentPage === totalPages}
-          className="px-3 py-1 bg-orange-primary rounded disabled:opacity-50 hover:bg-orange-600"
+          className="px-3 py-1 bg-[#1e2022]  rounded disabled:opacity-50 hover:bg-[#323436]"
         >
           {t('next')}
         </button>
