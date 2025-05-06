@@ -9,6 +9,7 @@ import Card from "../Components/UI/Card.jsx";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import CardCrate from "../Components/UI/CardCrate.jsx";
+import Container from "../Components/UI/Container.jsx";
 
 export default function SkinDetails() {
   const [skin, setSkin] = useState(null);
@@ -115,9 +116,9 @@ export default function SkinDetails() {
     crate !== undefined
   ) {
     return (
-      <div className="flex justify-center items-center w-full bg-black-primary">
-        <main className="flex flex-col items-center w-4/6 min-h-screen">
+      <Container>
           <Header />
+          <main className="flex flex-col items-center w-4/6 min-h-screen">
           <div className="flex flex-col flex-grow w-full pb-10 pt-5 fade-in">
             {/* Breadcrumb */}
             <div className="pb-10 flex text-p-primary items-center">
@@ -158,9 +159,9 @@ export default function SkinDetails() {
               <p className="italic text-p-secondary mt-auto">{italic}</p>
             </div>
           </div>
+          </main>
           <Footer />
-        </main>
-      </div>
+      </Container>
     );
   }
 }

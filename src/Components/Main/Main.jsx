@@ -122,7 +122,7 @@ export default function Main({ inputSearch }) {
 
   return (
     <main className="flex flex-col gap-5 flex-1 w-full pb-10 pt-5 fade-in">
-      <RarityFilter filterByRarity={filterByRarity} />
+      <RarityFilter filterByRarity={filterByRarity} rarityFilter={rarityFilter} />
 
       {filteredSkins.length === 0 ? (
         <div className="flex justify-start items-center w-full">

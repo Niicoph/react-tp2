@@ -1,16 +1,17 @@
 import { Link } from "react-router";
-import { routes } from "../routes/routes";
+import { routes } from "../Routes/Routes.js";
 import NotFundLogo from "../Components/UI/NotFoundLogo/NotFoundLogo.jsx";
 import Header from "../Components/Header/Header.jsx";
 import Footer from "../Components/Footer/Footer.jsx";
 import { useTranslation } from 'react-i18next'
+import Container from "../Components/UI/Container.jsx";
 
 export default function NotFound() {
   const { t } = useTranslation();
   return (
-    <div className="flex justify-center items-center w-full">
-      <main className="flex flex-col items-center w-4/6 min-h-screen">
+    <Container>
         <Header />
+        <main className="flex flex-col items-center w-4/6 min-h-screen">
         <div className="flex flex-col flex-grow w-full pb-10 pt-5 fade-in">
           <div className="pb-10">
             <Link to={routes.home}>
@@ -22,9 +23,8 @@ export default function NotFound() {
             <NotFundLogo />
           </div>
         </div>
-
+        </main>
         <Footer />
-      </main>
-    </div>
+    </Container>
   );
 }

@@ -6,6 +6,7 @@ import { routes } from "../Routes/Routes";
 import LoadingLogo from "../Components/UI/LoadingLogo/LoadingLogo";
 import Card from "../Components/UI/Card"; // Asegúrate de importar correctamente
 import { useTranslation } from "react-i18next";
+import Container from "../Components/UI/Container";
 
 export default function Favorites() {
   const [favorites, setFavorites] = useState(
@@ -61,9 +62,9 @@ export default function Favorites() {
   }
 
   return (
-    <div className="flex justify-center items-center w-full bg-black-primary">
-      <main className="flex flex-col items-center w-4/6 min-h-screen">
+    <Container>
         <Header />
+        <main className="flex flex-col items-center w-4/6 min-h-screen">
         <div className="flex flex-col flex-grow w-full pb-10 pt-5 fade-in">
           
         <div className="pb-10 flex text-p-primary items-center">
@@ -91,8 +92,8 @@ export default function Favorites() {
             </div>
           )}
         </div>
+        </main>
         <Footer />
-      </main>
-    </div>
+    </Container>
   );
 }
