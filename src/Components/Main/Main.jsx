@@ -78,6 +78,18 @@ export default function Main({ inputSearch }) {
     setRarityFilter(rarity);
   };
 
+  const resetFilterByRarity = () => {
+    setRarityFilter("All");
+  };
+
+  useEffect(() => {
+    const queryParamsFilter = new URLSearchParams(location.search);
+    const weaponFilter = queryParamsFilter.get("home");
+    if (!weaponFilter) {         
+      resetFilterByRarity();
+    }
+  }, [location]);
+
   // Paginación
   const indexOfLastSkin = currentPage * skinsPerPage;
   const indexOfFirstSkin = indexOfLastSkin - skinsPerPage;
