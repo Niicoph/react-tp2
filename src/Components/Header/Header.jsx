@@ -23,22 +23,23 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="w-full h-16 flex items-center border-b border-dotted border-slate-300 sticky top-0 z-10 bg-opacity-90 backdrop-blur-sm px-2 text-white">
-      <Link to={"/"}>
-        <img src={Logo} alt="logo !eco" className="w-14 h-14" />
-      </Link>
-      <Nav weaponCategories={weaponCategories} />
-      <div className="ml-auto flex items-center">
-
-        <LanguageSelector />
-
-        <Link to={"/favorites"}>
-          <img
-            src={isFavoritesPage ? favAfter : favBefore}
-            alt="Favorites"
-            className="w-5 h-5 ml-4 cursor-pointer"
-          />
+    <header className="w-full h-16 flex justify-center items-center bg-[#151719] border-b border-dotted border-slate-300 sticky top-0 z-10 bg-opacity-90 backdrop-blur-sm px-2 text-white">
+      <div className="w-4/6 flex items-center">
+        <Link to={"/"}>
+          <img src={Logo} alt="logo !eco" className="w-14 h-14" />
         </Link>
+        <Nav weaponCategories={weaponCategories} />
+        <div className="ml-auto flex items-center">
+          <LanguageSelector />
+
+          <Link to={"/favorites"}>
+            <img
+              src={isFavoritesPage ? favAfter : favBefore}
+              alt="Favorites"
+              className="w-5 h-5 ml-4 cursor-pointer"
+            />
+          </Link>
+        </div>
       </div>
     </header>
   );

@@ -9,7 +9,10 @@ export default function Card({ skin, liked = false, onToggleFavorite }) {
 
   return (
     <Link
-      className={`relative transition duration-200 pt-3 ease-in-out flex flex-col justify-center items-center w-full h-80 shadow-primary rounded-lg bg-black-secondary hover:border-2 hover:border-orange-primary`}
+      style={{
+        backgroundColor: skin.rarity.color,
+      }}
+      className={`relative transition duration-200 pt-3 ease-in-out flex flex-col justify-center items-center w-full h-80 shadow-primary rounded-2xl bg-[#ff9b01] backdrop-blur-lg hover:border-2 hover:border-orange-primary`}
       to={`/skins/${skin.id}`}
     >
       <button
@@ -20,7 +23,11 @@ export default function Card({ skin, liked = false, onToggleFavorite }) {
         }}
         className="absolute top-3 right-3 w-5 h-5 cursor-pointer"
       >
-        <img src={liked ? LikeAfter : LikeBefore} alt="Like Icon" className=""/>
+        <img
+          src={liked ? LikeAfter : LikeBefore}
+          alt="Like Icon"
+          className=""
+        />
       </button>
 
       <div
@@ -35,17 +42,18 @@ export default function Card({ skin, liked = false, onToggleFavorite }) {
         <img
           src={skin.image}
           alt={skin.name}
-          className={`object-contain w-full h-full transition-opacity duration-300 ${
+          className={`object-contain w-full h-full transition-opacity flex justify-center items-center duration-300 ${
             isLoading ? "opacity-0" : "opacity-100"
           }`}
-          style={{ filter: `drop-shadow(0 0 5px ${rarityColor})` }}
+          // style={{ filter: `drop-shadow(0 0 5px ${rarityColor})` }}
           onLoad={() => setIsLoading(false)}
           onError={() => setIsLoading(false)}
         />
       </div>
-
-      <h3 className="text-sm text-white font-bold mx-5">{skin.name}</h3>
-      <p className="text-xs text-white my-3">{skin.rarity.name}</p>
+      <div className="flex flex-col justify-center items-center w-full h-1/4 bg-black-secondary rounded-b-2xl">
+        <h3 className="text-sm text-white font-bold">{skin.name}</h3>
+        <p className="text-xs text-white">{skin.rarity.name}</p>
+      </div>
     </Link>
   );
 }

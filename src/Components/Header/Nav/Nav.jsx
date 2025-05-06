@@ -3,6 +3,7 @@ import Searchbar from "../../UI/Searchbar";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
+import DropDown from "../../../assets/Icons/dropdown.svg";
 
 export default function Nav({ weaponCategories }) {
   const [weapons, setWeapons] = useState([]);
@@ -50,71 +51,65 @@ export default function Nav({ weaponCategories }) {
 
   return (
     <nav className="flex items-center justify-between w-full h-full px-4">
-      <ul className="flex items-center gap-4 w-full">
-        {weaponCategories.map((weaponCat) => {
-          const isSelectedCategory =
-            selectedWeapon?.category === weaponCat.name;
+      <ul className="flex justify-between items-center gap-4 w-full h-8">
+        <div className="flex h-full justify-center items-center bg-[#1e2022] border border-[#252729] rounded-sm">
+          {weaponCategories.map((weaponCat) => {
+            const isSelectedCategory =
+              selectedWeapon?.category === weaponCat.name;
 
-          return (
-            <li key={weaponCat.id} className="relative">
-              <button
-                onClick={() => toggleDropdown(weaponCat.id)}
-                className="px-3 py-1 rounded flex items-center gap-2"
-              >
-                {isSelectedCategory && selectedWeapon?.image && (
-                  <img
-                    src={selectedWeapon.image}
-                    alt={selectedWeapon.name}
-                    className="w-4 h-4"
-                  />
-                )}
-                <span className="flex justify-center items-center gap-2 text-sm">
-                  {isSelectedCategory ? selectedWeapon.name : weaponCat.name}
-                  <img
-                    src="https://img.icons8.com/material-outlined/24/expand-arrow--v1.png"
-                    alt="dropdown"
-                    className="w-4 h-4"
-                  />
-                </span>
-              </button>
-
-              {openSelect === weaponCat.id && (
-                <div
-                  className="absolute mt-[18px] border-2 border-black-secondary rounded shadow-xl z-10 w-48 max-h-80 overflow-auto scrollbar-hidden
-                  transition-all duration-200 ease-out origin-top scale-95 opacity-0 animate-dropdown"
+            return (
+              <li key={weaponCat.id} className="relative">
+                <button
+                  onClick={() => toggleDropdown(weaponCat.id)}
+                  className="px-4 py-1 rounded flex items-center gap-2"
                 >
-                  {filterWeaponsByCategory(weaponCat.name).map((weapon) => (
-                    <Link
-                      to={`/?weapon=${weapon.name}`}
-                      key={weapon.id}
-                      onClick={() => selectWeapon(weapon)}
-                      className="px-2 py-2 bg-black-primary hover:bg-black-secondary cursor-pointer flex items-center gap-2"
-                    >
-                      <img
-                        src={weapon.image}
-                        alt={weapon.name}
-                        className="w-7 h-7"
-                      />
-                      <span>{weapon.name}</span>
-                    </Link>
-                  ))}
-                </div>
-              )}
-            </li>
-          );
-        })}
-        <li>
-          <Link
-            to={"/"}
-            onClick={resetSelections}
-            className="text-sm px-3 py-1 bg-red-500 hover:bg-red-600 text-white rounded"
-          >
-            {t("clear")}
-          </Link>
-        </li>
-        <li className="flex items-center w-3/4">
-          <Searchbar />
-        </li>
+                  {isSelectedCategory && selectedWeapon?.image && (
+                    <img
+                      src={selectedWeapon.image}
+                      alt={selectedWeapon.name}
+                      className="w-4 h-4"
+                    />
+                  )}
+                  <span className="flex justify-center items-center gap-2 text-xs p-1">
+                    {isSelectedCategory ? selectedWeapon.name : weaponCat.name}
+                    <img src={DropDown} alt="dropdown" className="w-4 h-4" />
+                  </span>
+                </button>
+
+                {openSelect === weaponCat.id && (
+                  <div
+                    className="absolute mt-[18px] border-2 border-black-secondary rounded shadow-xl z-10 w-48 max-h-80 overflow-auto scrollbar-hidden
+                  transition-all duration-200 ease-out origin-top scale-95 opacity-0 animate-dropdown"
+                  >
+                    {filterWeaponsByCategory(weaponCat.name).map((weapon) => (
+                      <Link
+                        to={`/?weapon=${weapon.name}`}
+                        key={weapon.id}
+                        onClick={() => selectWeapon(weapon)}
+                        className="px-2 py-2 bg-black-primary hover:bg-black-secondary cursor-pointer flex items-center gap-2"
+                      >
+                        <img
+                          src={weapon.image}
+                          alt={weapon.name}
+                          className="w-7 h-7"
+                        />
+                        <span>{weapon.name}</span>
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </li>
+            );
+          })}
+        </div>
+        <Link
+          to={"/"}
+          onClick={resetSelections}
+          className="h-full flex justify-center items-center px-2 text-sm bg-[#433216] text-[#db8f21] rounded border border-[#694a19]"
+        >
+          {t("clear")}
+        </Link>
+        <Searchbar />
       </ul>
     </nav>
   );
