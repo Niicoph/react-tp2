@@ -2,10 +2,16 @@
 
 @theme {
   --color-orange-primary: #fb742d;
-  --color-black-primary: #202020;
+  --color-black-primary: #0f0f11;
   --color-black-secondary: #1a1a1d;
+  --color-p-primary: white;
+  --color-p-secondary: #6a7282;
   --shadow-primary: 0px 1px 4px rgba(0, 0, 0, 0.16);
 
+}
+
+body {
+  background-color: #0f0f11;
 }
 
 .scrollbar-hidden {
