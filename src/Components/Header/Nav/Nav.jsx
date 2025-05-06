@@ -1,13 +1,24 @@
 import { useEffect, useState } from "react";
 import Searchbar from "../../UI/Searchbar";
 import { Link } from "react-router-dom";
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from "react-i18next";
+import { useLocation } from "react-router-dom";
 
 export default function Nav({ weaponCategories }) {
   const [weapons, setWeapons] = useState([]);
   const [openSelect, setOpenSelect] = useState(null);
   const [selectedWeapon, setSelectedWeapon] = useState(null); // Solo una selección
   const { t } = useTranslation();
+
+  const location = useLocation();
+
+  useEffect(() => {
+    const queryParams = new URLSearchParams(location.search);
+    const weaponParam = queryParams.get("weapon");
+    if (!weaponParam) {
+      resetSelections();
+    }
+  }, [location]);
 
   useEffect(() => {
     const fetchWeapons = async () => {
@@ -58,9 +69,7 @@ export default function Nav({ weaponCategories }) {
                   />
                 )}
                 <span className="flex justify-center items-center gap-2 text-sm">
-                  {isSelectedCategory
-                    ? selectedWeapon.name
-                    : weaponCat.name}
+                  {isSelectedCategory ? selectedWeapon.name : weaponCat.name}
                   <img
                     src="https://img.icons8.com/material-outlined/24/expand-arrow--v1.png"
                     alt="dropdown"
@@ -100,7 +109,7 @@ export default function Nav({ weaponCategories }) {
             onClick={resetSelections}
             className="text-sm px-3 py-1 bg-red-500 hover:bg-red-600 text-white rounded"
           >
-            {t('clear')}
+            {t("clear")}
           </Link>
         </li>
         <li className="flex items-center w-3/4">
