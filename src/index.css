@@ -13,6 +13,10 @@ body {
   background-color: #0f0f11;
 }
 
+.logo-shadow {  
+  filter: drop-shadow(0 0 10px var(--color-black-primary));
+}
+
 .bg-image {
   background-image: url("/src/assets/backgrounds/bg-main.png");
   background-attachment: fixed;
