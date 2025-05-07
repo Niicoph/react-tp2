@@ -1,8 +1,8 @@
 // src/i18n.js
-import i18n from 'i18next';
-import { initReactI18next } from 'react-i18next';
+import i18n from "i18next";
+import { initReactI18next } from "react-i18next";
 
-const savedLang = localStorage.getItem('language') || 'en';
+const savedLang = localStorage.getItem("language") || "en";
 
 // Traducciones de ejemplo
 const resources = {
@@ -18,9 +18,9 @@ const resources = {
       noskins: "No skins found",
       noFavorites: "No favorites found",
       favorites: "Favorites",
-      gradeAll: "All" , 
-      gradeRare: "Mil-Spec Grade",    
-      gradeAncient: "Covert", 
+      gradeAll: "All",
+      gradeRare: "Mil-Spec Grade",
+      gradeAncient: "Covert",
       gradeMythical: "Restricted",
       gradeLegendary: "Classified",
       noresults: "No results found",
@@ -28,7 +28,8 @@ const resources = {
       crate: "Crate",
       containedIn: "Contained in",
       release: "Release",
-      home: "Home"
+      home: "Home",
+      project: "This project is in",
     },
   },
   es: {
@@ -53,8 +54,8 @@ const resources = {
       crate: "Caja",
       containedIn: "Contenida en",
       release: "Lanzamiento",
-      home: "Inicio"
-
+      home: "Inicio",
+      project: "Este proyecto está en",
     },
   },
 };

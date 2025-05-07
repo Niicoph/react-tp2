@@ -114,7 +114,7 @@ export default function Main({ inputSearch }) {
 
   if (error) {
     return (
-      <div className="flex justify-center items-center w-full h-full">
+      <div className="flex flex-1 justify-center items-center w-full h-full bg-black-primary">
         <h1 className="text-3xl font-bold">Error: {error.message}</h1>
       </div>
     );
@@ -125,8 +125,8 @@ export default function Main({ inputSearch }) {
       <RarityFilter filterByRarity={filterByRarity} rarityFilter={rarityFilter} />
 
       {filteredSkins.length === 0 ? (
-        <div className="flex justify-start items-center w-full">
-          <h1 className="text-sm font-medium">{t('noskins')}</h1>
+        <div className="flex flex-1 justify-center items-center rounded-md bg-black-primary text-white w-full">
+          <h1 className="text-lg font-medium">{t('noskins')}</h1>
         </div>
       ) : (
         <>

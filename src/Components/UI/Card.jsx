@@ -5,14 +5,13 @@ import LikeAfter from "../../assets/Icons/likeAfter.svg";
 
 export default function Card({ skin, liked = false, onToggleFavorite }) {
   const [isLoading, setIsLoading] = useState(true);
-  const rarityColor = skin.rarity.color;
 
   return (
     <Link
       style={{
         backgroundColor: `${skin.rarity.color}40`,
       }}
-      className={`relative transition duration-300 pt-3 ease-in-out flex flex-col justify-center items-center w-full h-80 rounded-md backdrop-blur-lg hover:scale-105`}
+      className={`relative transition duration-300 pt-3 ease-in-out flex flex-col justify-center items-center w-full h-80 rounded-md backdrop-blur-lg hover:scale-103`}
       to={`/skins/${skin.id}`}
     >
       <button
@@ -37,12 +36,12 @@ export default function Card({ skin, liked = false, onToggleFavorite }) {
 
       <div className="w-3/4 h-3/4 flex justify-center items-center relative">
         {isLoading && (
-          <div className="absolute w-5 h-5 border-2 border-black border-t-transparent rounded-full animate-spin" />
+          <div className="absolute w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
         )}
         <img
           src={skin.image}
           alt={skin.name}
-          className={`object-contain w-full h-full transition-opacity flex justify-center items-center duration-300 ${
+          className={`object-contain w-full h-full text-white flex justify-center items-center  hover:rotate-6 transition-all duration-400 ease-in-out transform  ${
             isLoading ? "opacity-0" : "opacity-100"
           }`}
           // style={{ filter: `drop-shadow(0 0 5px ${rarityColor})` }}
