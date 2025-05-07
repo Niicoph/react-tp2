@@ -5,7 +5,7 @@ export default function CardCrate({ crate }) {
     const [loading, setLoading] = useState(true);
     const { t } = useTranslation();
     return(
-        <div className={`relative transition duration-200 pt-3 ease-in-out flex flex-col justify-center items-center w-full h-69 shadow-primary rounded-lg bg-black-secondary hover:border-2 hover:border-orange-primary`}>
+        <div className={`relative bg-[#1e2022] border border-[#252729] transition duration-200 ease-in-out flex flex-col justify-center items-center w-full  shadow-primary rounded-lg`}>
             <div className="w-full h-48 flex justify-center items-center relative mb-4">
                 {loading && (
                     <div className="absolute w-5 h-5 border-2 border-black border-t-transparent rounded-full animate-spin" />

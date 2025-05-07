@@ -4,17 +4,21 @@ import Header from "../Components/Header/Header";
 import Footer from "../Components/Footer/Footer";
 import { routes } from "../Routes/Routes";
 import LoadingLogo from "../Components/UI/LoadingLogo/LoadingLogo";
-import Card from "../Components/UI/Card"; // Asegúrate de importar correctamente
+import RarityFilter from "../Components/RarityFilter/RarityFilter";
+import Card from "../Components/UI/Card";
 import { useTranslation } from "react-i18next";
 import Container from "../Components/UI/Container";
+import ForwardIcon from "../assets/Icons/forward.svg";
 
 export default function Favorites() {
   const [favorites, setFavorites] = useState(
     JSON.parse(localStorage.getItem("favorites")) || []
   );
   const [allSkins, setAllSkins] = useState([]);
+  const [filteredFavorites, setFilteredFavorites] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [rarityFilter, setRarityFilter] = useState("All");
 
   const { t } = useTranslation();
 
@@ -37,6 +41,24 @@ export default function Favorites() {
     fetchSkins();
   }, []);
 
+  useEffect(() => {
+    let filtered = allSkins.filter((skin) => favorites.includes(skin.id));
+
+    if (rarityFilter !== "All") {
+      filtered = filtered.filter((skin) => {
+        if (typeof skin.rarity === "string") {
+          return skin.rarity === rarityFilter;
+        }
+        if (typeof skin.rarity === "object" && skin.rarity.name) {
+          return skin.rarity.name === rarityFilter;
+        }
+        return false;
+      });
+    }
+
+    setFilteredFavorites(filtered);
+  }, [allSkins, favorites, rarityFilter]);
+
   const toggleFavorite = (skinId) => {
     const updatedFavorites = favorites.includes(skinId)
       ? favorites.filter((id) => id !== skinId)
@@ -46,10 +68,9 @@ export default function Favorites() {
     localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
   };
 
-  const favoriteSkins = allSkins.filter((skin) =>
-    favorites.includes(skin.id)
-  );
-
+  const filterByRarity = (rarity) => {
+    setRarityFilter(rarity);
+  };
 
   if (loading) return <LoadingLogo />;
 
@@ -63,25 +84,29 @@ export default function Favorites() {
 
   return (
     <Container>
-        <Header />
-        <main className="flex flex-col items-center w-4/6 min-h-screen">
+      <Header />
+      <main className="flex flex-col items-center w-4/6 min-h-screen">
         <div className="flex flex-col flex-grow w-full pb-10 pt-5 fade-in">
-          
-        <div className="pb-10 flex text-p-primary items-center">
+          <div className="pb-5 flex flex-col text-black-primary ">
+            <div className="flex items-center gap-2 pb-4">
               <Link to={routes.home}>
                 <span className="flex gap-2">{t("home")}</span>
               </Link>
-              <p className="mx-1"> / </p>
-              <span> {t('favorites')} </span>
+              <img src={ForwardIcon} alt="next" className="w-5 h-5" />
+              <span> {t("favorites")} </span>
             </div>
-
-          {favoriteSkins.length === 0 ? (
+            <RarityFilter
+              filterByRarity={filterByRarity}
+              rarityFilter={rarityFilter}
+            />
+          </div>
+          {filteredFavorites.length === 0 ? (
             <div className="flex justify-start items-center w-full">
-              <h1 className="text-sm font-medium">{t('noFavorites')}</h1>
+              <h1 className="text-sm font-medium">{t("noFavorites")}</h1>
             </div>
           ) : (
-            <div className="grid grid-cols-4 gap-10">
-              {favoriteSkins.map((skin) => (
+            <div className="flex-1 grid grid-cols-4 gap-5 p-5 rounded-md bg-black-primary">
+              {filteredFavorites.map((skin) => (
                 <Card
                   key={skin.id}
                   skin={skin}
@@ -92,8 +117,8 @@ export default function Favorites() {
             </div>
           )}
         </div>
-        </main>
-        <Footer />
+      </main>
+      <Footer />
     </Container>
   );
 }

@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import CardCrate from "../Components/UI/CardCrate.jsx";
 import Container from "../Components/UI/Container.jsx";
+import ForwardIcon from "../assets/Icons/forward.svg";
 
 export default function SkinDetails() {
   const [skin, setSkin] = useState(null);
@@ -105,8 +106,6 @@ export default function SkinDetails() {
     );
   }
 
-  // const [selectedWeapon, setSelectedWeapon] = useState({});
-
   if (
     skin &&
     skin !== null &&
@@ -117,50 +116,49 @@ export default function SkinDetails() {
   ) {
     return (
       <Container>
-          <Header />
-          <main className="flex flex-col items-center w-4/6 min-h-screen">
-          <div className="flex flex-col flex-grow w-full pb-10 pt-5 fade-in">
+        <Header />
+        <main className="flex flex-1 flex-col items-center w-4/6">
+          <div className="flex flex-col w-full pt-5 fade-in">
             {/* Breadcrumb */}
-            <div className="pb-10 flex text-p-primary items-center">
+            <div className="pb-5 flex text-black-primary items-center">
               <Link to={routes.home}>
                 <span className="flex gap-2">{t("home")}</span>
               </Link>
-              <p className="mx-1"> / </p>
+              <img src={ForwardIcon} alt="next" className="w-5 h-5" />
               <span> {skin.weapon}</span>
             </div>
 
             {/* Arma y caja en una fila */}
-            <div className="flex flex-row gap-10 justify-between">
+            <div className="flex flex-row gap-10 p-5 bg-black-primary justify-between rounded-md">
               {/* Arma (izquierda) */}
-              <div className="basis-1/2">
-                <Card
-                  key={skin.id}
-                  skin={skin}
-                  liked={favorites.includes(skin.id)}
-                  onToggleFavorite={() => toggleFavorite(skin.id)}
-                />
+              <div
+                className="w-full rounded-md flex justify-center items-center"
+                style={{
+                  backgroundColor: `${skin.rarity.color}40`,
+                }}
+              >
+                <img src={skin.image} alt="" />
               </div>
 
-              {/* Caja (derecha) */}
-              <div className="basis-1/4">
-                <div className="w-full text-center text-sm font-semibold text-p-primary tracking-wide my-3">
-                  {t("containedIn")}
+              {/* Arma (derecha) */}
+              <div className="flex flex-col justify-between w-full gap-2">
+                <div className="text-3xl text-white font-semibold p-2 pt-0">
+                  {" "}
+                  {skin.name}
                 </div>
-                <CardCrate crate={crate} />
+                <p className="text-gray-400 bg-[#1e2022] border border-[#252729] rounded-md p-2">
+                  {description}
+                </p>
+                <div className="w-full text-sm font-semibold text-p-primary tracking-wide">
+                  <p className="p-2"> {t("containedIn")} </p>
+                  <CardCrate crate={crate} />
+                </div>
+                <p className="italic text-p-secondary mt-auto">{italic}</p>
               </div>
-            </div>
-
-            {/* Descripción debajo */}
-            <div className="mt-10 border bg-black-secondary border-black-primary rounded-xl shadow-sm p-4 text-p-primary flex flex-col">
-              <div className="text-lg font-semibold">{skin.name}</div>
-              <div className="flex-1">
-                <p>{description}</p>
-              </div>
-              <p className="italic text-p-secondary mt-auto">{italic}</p>
             </div>
           </div>
-          </main>
-          <Footer />
+        </main>
+        <Footer />
       </Container>
     );
   }

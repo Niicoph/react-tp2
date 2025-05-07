@@ -7,10 +7,8 @@ export default function Home() {
   return (
     <Container>
       <Header />
-      <main className="flex flex-col items-center w-4/6 min-h-screen">
-        <Main />
-      </main>
-        <Footer />
+      <Main />
+      <Footer />
     </Container>
   );
 }

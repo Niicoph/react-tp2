@@ -9,7 +9,7 @@ import { useTranslation } from "react-i18next";
 export default function Main({ inputSearch }) {
   const [allSkins, setAllSkins] = useState([]);
   const [filteredSkins, setFilteredSkins] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [favorites, setFavorites] = useState(
     JSON.parse(localStorage.getItem("favorites")) || []
@@ -121,7 +121,7 @@ export default function Main({ inputSearch }) {
   }
 
   return (
-    <main className="flex flex-col gap-5 flex-1 w-full pb-10 pt-5 fade-in">
+    <main className="flex flex-col gap-5 flex-1 w-4/6 pb-10 pt-5 fade-in">
       <RarityFilter filterByRarity={filterByRarity} rarityFilter={rarityFilter} />
 
       {filteredSkins.length === 0 ? (
@@ -130,7 +130,7 @@ export default function Main({ inputSearch }) {
         </div>
       ) : (
         <>
-             <div className="flex-1  grid grid-cols-4 gap-5 rounded-md bg-[#151719] p-5">
+             <div className="flex-1  grid grid-cols-4 gap-5 rounded-md bg-black-primary p-5">
             {currentSkins.map((skin) => (
               <Card
                 key={skin.id}
