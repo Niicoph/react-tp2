@@ -23,13 +23,13 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="w-full h-16 flex justify-center items-center bg-black-primary border-b border-dotted border-slate-300 sticky top-0 z-10 bg-opacity-90 backdrop-blur-sm px-2 text-white">
-      <div className="w-4/6 flex items-center">
+    <header className="w-full h-16 flex justify-center items-center bg-black-primary border-b border-dotted border-slate-300 sticky top-0 z-10 bg-opacity-90 backdrop-blur-sm text-white">
+      <div className="w-4/6 flex items-center justify-between px-4">
         <Link to={"/"}>
           <img src={Logo} alt="logo !eco" className="w-14 h-14" />
         </Link>
         <Nav weaponCategories={weaponCategories} />
-        <div className="ml-auto flex items-center">
+        <div className="flex items-center gap-2">
           <LanguageSelector />
 
           <Link to={"/favorites"}>

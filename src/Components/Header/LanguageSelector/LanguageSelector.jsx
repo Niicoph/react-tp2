@@ -22,11 +22,11 @@ const languages = [
     };
 
     return (
-      <div className="w-full h-16 flex items-center border-b border-dotted border-slate-300 sticky top-0 z-10 bg-opacity-90 backdrop-blur-sm px-2">
+      <div className="w-fit h-16 flex items-center ">
 
-        <img className="w-6 h-6 rounded-full m-2" src={currentLang.flag} alt={currentLang.code} />
+        <img className="w-6 h-6 rounded-full mr-2" src={currentLang.flag} alt={currentLang.code} />
 
-        <select value={currentLangCode} onChange={handleChange} className='bg-black-secondary'>
+        <select value={currentLangCode} onChange={handleChange} className='bg-black-primary '>
           {languages.map((lang) => (
             <option key={lang.code} value={lang.code}>
               {lang.name}
