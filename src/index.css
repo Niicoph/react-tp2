@@ -13,7 +13,7 @@ body {
   background-color: #0f0f11;
 }
 
-.logo-shadow {  
+.logo-shadow {
   filter: drop-shadow(0 0 10px var(--color-black-primary));
 }
 

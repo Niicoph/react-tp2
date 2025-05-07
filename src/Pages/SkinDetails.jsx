@@ -11,6 +11,7 @@ import { useTranslation } from "react-i18next";
 import CardCrate from "../Components/UI/CardCrate.jsx";
 import Container from "../Components/UI/Container.jsx";
 import ForwardIcon from "../assets/Icons/forward.svg";
+import Tilt from "react-parallax-tilt";
 
 export default function SkinDetails() {
   const [skin, setSkin] = useState(null);
@@ -131,14 +132,20 @@ export default function SkinDetails() {
             {/* Arma y caja en una fila */}
             <div className="flex flex-row gap-10 p-5 bg-black-primary justify-between rounded-md">
               {/* Arma (izquierda) */}
-              <div
-                className="w-full rounded-md flex justify-center items-center"
+              <Tilt
+                glareEnable={true}
+                glareMaxOpacity={0.1}
+                glareColor="#000000"
+                glarePosition="all"
+                tiltMaxAngleX={5}
+                tiltMaxAngleY={5}
+                className="w-full rounded-md flex justify-center items-center transition duration-300 ease-in-out"
                 style={{
                   backgroundColor: `${skin.rarity.color}40`,
                 }}
               >
-                <img src={skin.image} alt="" />
-              </div>
+                <img src={skin.image} alt="" className="rounded-md shadow-lg" />
+              </Tilt>
 
               {/* Arma (derecha) */}
               <div className="flex flex-col justify-between w-full gap-2">
