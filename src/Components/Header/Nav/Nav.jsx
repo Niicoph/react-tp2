@@ -61,7 +61,7 @@ export default function Nav({ weaponCategories }) {
               <li key={weaponCat.id} className="relative">
                 <button
                   onClick={() => toggleDropdown(weaponCat.id)}
-                  className="px-4 py-1 rounded flex items-center gap-2"
+                  className="px-4 py-1 rounded flex items-center gap-2 cursor-pointer"
                 >
                   {isSelectedCategory && selectedWeapon?.image && (
                     <img

@@ -5,6 +5,7 @@ import RarityFilter from "../RarityFilter/RarityFilter";
 import LoadingLogo from "../UI/LoadingLogo/LoadingLogo";
 import Pagination from "../UI/Pagination";
 import { useTranslation } from "react-i18next";
+import Breadcrum from "../Breadcrum/Breadcrum";
 
 export default function Main({ inputSearch }) {
   const [allSkins, setAllSkins] = useState([]);
@@ -122,23 +123,29 @@ export default function Main({ inputSearch }) {
 
   return (
     <main className="flex flex-col gap-5 flex-1 w-4/6 pb-10 pt-5 fade-in">
-      <RarityFilter filterByRarity={filterByRarity} rarityFilter={rarityFilter} />
+      <Breadcrum />
 
       {filteredSkins.length === 0 ? (
         <div className="flex flex-1 justify-center items-center rounded-md bg-black-primary text-white w-full">
-          <h1 className="text-lg font-medium">{t('noskins')}</h1>
+          <h1 className="text-lg font-medium">{t("noskins")}</h1>
         </div>
       ) : (
         <>
-             <div className="flex-1  grid grid-cols-4 gap-5 rounded-md bg-black-primary p-5">
-            {currentSkins.map((skin) => (
-              <Card
-                key={skin.id}
-                skin={skin}
-                liked={favorites.includes(skin.id)}
-                onToggleFavorite={() => toggleFavorite(skin.id)}
-              />
-            ))}
+          <div className="flex-1 flex-col  gap-5 rounded-md bg-black-primary p-5">
+            <RarityFilter
+              filterByRarity={filterByRarity}
+              rarityFilter={rarityFilter}
+            />
+            <div className="grid grid-cols-4 gap-5">
+              {currentSkins.map((skin) => (
+                <Card
+                  key={skin.id}
+                  skin={skin}
+                  liked={favorites.includes(skin.id)}
+                  onToggleFavorite={() => toggleFavorite(skin.id)}
+                />
+              ))}
+            </div>
           </div>
 
           <Pagination

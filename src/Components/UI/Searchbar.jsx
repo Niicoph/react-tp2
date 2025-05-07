@@ -30,10 +30,11 @@ export default function Searchbar() {
     setFilteredSkins(results);
   }, [query, allSkins]);
 
+
   return (
     <div className="relative w-full h-full mx-auto">
       <Input value={query} onChange={(e) => setQuery(e.target.value)} />
-      <Dropdown skins={filteredSkins} query={query.trim()}/>
+      <Dropdown skins={filteredSkins} query={query} />
     </div>
   );
 }

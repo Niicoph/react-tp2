@@ -6,12 +6,11 @@ import LoadingLogo from "../Components/UI/LoadingLogo/LoadingLogo.jsx";
 import Header from "../Components/Header/Header.jsx";
 import Footer from "../Components/Footer/Footer.jsx";
 import Card from "../Components/UI/Card.jsx";
-import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import CardCrate from "../Components/UI/CardCrate.jsx";
 import Container from "../Components/UI/Container.jsx";
-import ForwardIcon from "../assets/Icons/forward.svg";
 import Tilt from "react-parallax-tilt";
+import Breadcrum from "../Components/Breadcrum/Breadcrum.jsx";
 
 export default function SkinDetails() {
   const [skin, setSkin] = useState(null);
@@ -121,12 +120,10 @@ export default function SkinDetails() {
         <main className="flex flex-1 flex-col items-center w-4/6">
           <div className="flex flex-col w-full pt-5 fade-in">
             {/* Breadcrumb */}
-            <div className="pb-5 flex text-black-primary items-center">
-              <Link to={routes.home}>
-                <span className="flex gap-2">{t("home")}</span>
-              </Link>
-              <img src={ForwardIcon} alt="next" className="w-5 h-5" />
-              <span> {skin.weapon}</span>
+            <div className="w-full pb-5 flex text-black-primary items-center">
+              <Breadcrum>
+                <span> {skin.weapon} </span>
+              </Breadcrum>
             </div>
 
             {/* Arma y caja en una fila */}

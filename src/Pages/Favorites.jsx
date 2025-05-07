@@ -9,15 +9,16 @@ import Card from "../Components/UI/Card";
 import { useTranslation } from "react-i18next";
 import Container from "../Components/UI/Container";
 import ForwardIcon from "../assets/Icons/forward.svg";
+import Breadcrum from "../Components/Breadcrum/Breadcrum";
 
 export default function Favorites() {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
   const [favorites, setFavorites] = useState(
     JSON.parse(localStorage.getItem("favorites")) || []
   );
   const [allSkins, setAllSkins] = useState([]);
   const [filteredFavorites, setFilteredFavorites] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
   const [rarityFilter, setRarityFilter] = useState("All");
 
   const { t } = useTranslation();
@@ -88,32 +89,30 @@ export default function Favorites() {
       <main className="flex flex-col items-center w-4/6 min-h-screen">
         <div className="flex flex-col flex-grow w-full pb-10 pt-5 fade-in">
           <div className="pb-5 flex flex-col text-black-primary ">
-            <div className="flex items-center gap-2 pb-4">
-              <Link to={routes.home}>
-                <span className="flex gap-2">{t("home")}</span>
-              </Link>
-              <img src={ForwardIcon} alt="next" className="w-5 h-5" />
+            <Breadcrum>
               <span> {t("favorites")} </span>
-            </div>
-            <RarityFilter
-              filterByRarity={filterByRarity}
-              rarityFilter={rarityFilter}
-            />
+            </Breadcrum>
           </div>
           {filteredFavorites.length === 0 ? (
-            <div className="flex justify-start items-center w-full">
-              <h1 className="text-sm font-medium">{t("noFavorites")}</h1>
+            <div className="flex flex-1 justify-center items-center rounded-md bg-black-primary text-white w-full">
+              <h1 className="text-lg font-medium">{t("noFavorites")}</h1>
             </div>
           ) : (
-            <div className="flex-1 grid grid-cols-4 gap-5 p-5 rounded-md bg-black-primary">
-              {filteredFavorites.map((skin) => (
-                <Card
-                  key={skin.id}
-                  skin={skin}
-                  liked={favorites.includes(skin.id)}
-                  onToggleFavorite={() => toggleFavorite(skin.id)}
-                />
-              ))}
+            <div className="flex-1 flex-col gap-5 p-5 rounded-md bg-black-primary">
+              <RarityFilter
+                filterByRarity={filterByRarity}
+                rarityFilter={rarityFilter}
+              />
+              <div className="grid grid-cols-4 gap-5">
+                {filteredFavorites.map((skin) => (
+                  <Card
+                    key={skin.id}
+                    skin={skin}
+                    liked={favorites.includes(skin.id)}
+                    onToggleFavorite={() => toggleFavorite(skin.id)}
+                  />
+                ))}
+              </div>
             </div>
           )}
         </div>
