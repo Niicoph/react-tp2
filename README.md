@@ -1,6 +1,6 @@
 # Programacion Web Avanazada - 2025
 
-## <strong>Trabajo Práctico: REACT
+## <strong>Trabajo Práctico 2: REACT
 
 ## Integrantes
 
@@ -82,7 +82,7 @@ http://localhost:5173/
 
 > Podes navegar por las distintas páginas de skins.
 
-#### En el header tenes hay varias funciones
+#### En el header tenes varias funciones
 
 <img src="./src/assets/Readme/Header.jpg" width="900" alt="Header">
 
