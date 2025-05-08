@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Header from "../Components/Header/Header";
 import Footer from "../Components/Footer/Footer";
-import { routes } from "../Routes/Routes";
+import { routes } from "../routes/routes";
 import LoadingLogo from "../Components/UI/LoadingLogo/LoadingLogo";
 import RarityFilter from "../Components/RarityFilter/RarityFilter";
 import Card from "../Components/UI/Card";
