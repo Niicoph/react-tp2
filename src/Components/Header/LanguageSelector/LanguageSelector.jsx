@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import FlagIcon from '../../UI/FlagIcon';
+import enUKIcon from '../../../assets/Icons/en-UK.png';
+import esESIcon from '../../../assets/Icons/es-ES.png';
+
 
 const languages = [
-    {code: 'en', name: 'English', flag: '/src/assets/Icons/en-UK.png'},
-    {code: 'es', name: 'Español', flag: '/src//assets/Icons/es-ES.png'}
+    {code: 'en', name: 'English', flag: enUKIcon},
+    {code: 'es', name: 'Español', flag: esESIcon}
   ];
 
   export default function LanguageSelector() {
@@ -25,7 +27,7 @@ const languages = [
     return (
       <div className="w-fit h-16 flex items-center ">
 
-        <FlagIcon src={currentLang.flag} alt={currentLang.code}/>
+        <img className="w-6 h-6 rounded-full mr-2" src={currentLang.flag} alt={currentLang.code} />
 
         <select value={currentLangCode} onChange={handleChange} className='bg-black-primary '>
           {languages.map((lang) => (
