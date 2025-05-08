@@ -5,12 +5,13 @@ import { routes } from "../routes/routes.js";
 import LoadingLogo from "../Components/UI/LoadingLogo/LoadingLogo.jsx";
 import Header from "../Components/Header/Header.jsx";
 import Footer from "../Components/Footer/Footer.jsx";
-import Card from "../Components/UI/Card.jsx";
 import { useTranslation } from "react-i18next";
 import CardCrate from "../Components/UI/CardCrate.jsx";
 import Container from "../Components/UI/Container.jsx";
 import Tilt from "react-parallax-tilt";
 import Breadcrum from "../Components/Breadcrum/Breadcrum.jsx";
+import LikeBefore from "../assets/Icons/likeBefore.svg";
+import LikeAfter from "../assets/Icons/likeAfter.svg";
 
 export default function SkinDetails() {
   const [skin, setSkin] = useState(null);
@@ -141,6 +142,14 @@ export default function SkinDetails() {
                   backgroundColor: `${skin.rarity.color}40`,
                 }}
               >
+                <button className="absolute top-6 right-6"> 
+                <img
+                  src={favorites.includes(id) ? LikeAfter : LikeBefore}
+                  alt="Like Icon"
+                  className="w-10"
+                  onClick={()=> toggleFavorite(id)}
+                />
+                </button>
                 <img src={skin.image} alt="" className="rounded-md shadow-lg" />
               </Tilt>
 

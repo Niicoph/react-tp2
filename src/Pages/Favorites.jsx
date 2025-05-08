@@ -1,14 +1,11 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import Header from "../Components/Header/Header";
 import Footer from "../Components/Footer/Footer";
-import { routes } from "../routes/routes";
 import LoadingLogo from "../Components/UI/LoadingLogo/LoadingLogo";
 import RarityFilter from "../Components/RarityFilter/RarityFilter";
 import Card from "../Components/UI/Card";
 import { useTranslation } from "react-i18next";
 import Container from "../Components/UI/Container";
-import ForwardIcon from "../assets/Icons/forward.svg";
 import Breadcrum from "../Components/Breadcrum/Breadcrum";
 
 export default function Favorites() {
