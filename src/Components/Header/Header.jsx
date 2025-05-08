@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import favBefore from "../../assets/Icons/LikeBefore.svg";
-import favAfter from "../../assets/Icons/LikeAfter.svg";
+import favBefore from "../../assets/Icons/likeBefore.svg";
+import favAfter from "../../assets/Icons/likeAfter.svg";
 import Nav from "./Nav/Nav";
 import LanguageSelector from "./LanguageSelector/LanguageSelector";
 import Logo from "../../assets/logo.svg";
