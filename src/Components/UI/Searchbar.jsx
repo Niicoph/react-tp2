@@ -16,7 +16,7 @@ export default function Searchbar() {
         const data = await res.json();
         setAllSkins(data);
       } catch (err) {
-        console.error("Error fetching skins:", err);
+        //console.error("Error fetching skins:", err);
       }
     };
 

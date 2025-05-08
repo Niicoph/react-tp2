@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next';
+import enUKIcon from '../../../assets/Icons/en-UK.png';
+import esESIcon from '../../../assets/Icons/es-ES.png';
+
 
 const languages = [
-    { code: 'en', name: 'English', flag: '/src/assets/Icons/en-UK.png' },
-    { code: 'es', name: 'Español', flag: '/src/assets/Icons/es-ES.png'},
+    {code: 'en', name: 'English', flag: enUKIcon},
+    {code: 'es', name: 'Español', flag: esESIcon}
   ];
 
   export default function LanguageSelector() {
