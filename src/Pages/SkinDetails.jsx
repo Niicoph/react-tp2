@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { Navigate } from "react-router";
-import { routes } from "../Routes/Routes.js";
+import { routes } from "../routes/routes.js";
 import LoadingLogo from "../Components/UI/LoadingLogo/LoadingLogo.jsx";
 import Header from "../Components/Header/Header.jsx";
 import Footer from "../Components/Footer/Footer.jsx";
