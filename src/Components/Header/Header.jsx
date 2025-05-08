@@ -4,7 +4,6 @@ import favAfter from "../../assets/Icons/likeAfter.svg";
 import Nav from "./Nav/Nav";
 import LanguageSelector from "./LanguageSelector/LanguageSelector";
 import Logo from "../../assets/logo.svg";
-import Caja from "../../assets/Icons/coce.png";
 import { Link, useLocation } from "react-router-dom";
 import Searchbar from "../UI/Searchbar";
 
@@ -27,6 +26,7 @@ export default function Header() {
   return (
     <header className="w-full h-16 flex justify-center items-center bg-black-primary border-b border-dotted border-slate-300 sticky top-0 z-10 bg-opacity-90 backdrop-blur-sm text-white">
       <div className="w-4/6 flex items-center justify-center px-4">
+        
         <Link to={"/"} className="mx-2">
           <img src={Logo} alt="logo !eco" className="min-w-14 max-h-14" />
         </Link>
