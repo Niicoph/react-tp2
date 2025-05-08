@@ -32,7 +32,7 @@ export default function Searchbar() {
 
 
   return (
-    <div className="relative mx-2 min-w-1/3 w-full max-w-1/3">
+    <div className="relative mx-10 min-w-1/3 w-full max-w-1/3">
       <Input value={query} onChange={(e) => setQuery(e.target.value)} />
       <Dropdown skins={filteredSkins} query={query} />
     </div>

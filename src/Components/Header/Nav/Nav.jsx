@@ -50,7 +50,7 @@ export default function Nav({ weaponCategories }) {
 
   return (
     <nav className="flex items-center justify-between">
-      <ul className="flex justify-between items-center gap-4 h-8">
+      <ul className="flex justify-between items-center gap-2 h-8">
         <div className="flex h-full justify-center items-center bg-[#1e2022] border border-[#252729] rounded-sm">
           {weaponCategories.map((weaponCat) => {
             const isSelectedCategory =
